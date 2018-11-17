@@ -8,62 +8,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script type="text/javascript" href="assets/javascript/main.js"></script>
     <title>Project</title>
-    <!-- jQuery CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Firebase integration -->
-    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-    <script src="assets/javascript/main.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Arimo|Merriweather');
-        body {
-            background-color: #BBBBBB;
-        }
-        img {
-            z-index: -999;
-        }
-        h1{
-            color: #FFFFFF;
-            font-weight: bolder;
-            font-size: 60px;
-            text-shadow: #4E4B4B 0px 3px 6px;
-        }
-        h2{
-            color: #a239ca;
-            font-weight: bolder;
-            font-size: 60px;
-        }
-        .btn{
-            border-radius: 30px;
-        }
-        .jumbotron {
-            z-index: 1;
-            position: absolute;
-            margin-top: 10%;
-            opacity: .80;
-            width: 100%;
-        }
-        .s006{
-            margin-left: 30%;
-            z-index: 1;
-            position: absolute;
-            margin-top: 5%;
-        }
-        #search{
-          width: 450px;
-          height: 50px;
-          border-radius: 100px;
-
-        }
-        label{
-            font-family: 'Arimo', sans-serif;
-            font-size: 26px;
-            font-weight: bold;
-        }
-        #form{
-            padding: 10px;
-        }
-    </style>
   </head>
   <body>
       <!--NAVBAR-->
@@ -100,111 +46,162 @@
         </div>
     </nav>
 
-              <!--1ST PAGE CONTAINER-->
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="s006">
-                    <form>
-                      <fieldset>
-                        <legend>What are you looking for?</legend>
-                        <div class="inner-form">
-                          <div class="input-field">
-                            <input id="search" type="text" placeholder="Restaurants" value="" />
-                            <button id="search-button" class="btn-search" type="submit">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-                              </svg>
-                            </button>
-                          </div>
-                        </div>
-                        <div class="suggestion-wrap">
-                          <span>Barbershops</span>
-                          <span>Events</span>
-                          <span>Resturants</span>
-                          <span>Shopping</span>
-                          <span>Exploring</span>
-                        </div>
-                      </fieldset>
-                    </form>
-                  </div>
+      <!--1ST PAGE CONTAINER-->
+    <div class="container col-12">
+      <div class="row bgHeader">
+          <div class="s006">
+          <form>
+            <fieldset>
+              <legend>What are you looking for?</legend>
+              <div class="inner-form">
+                <div class="input-field">
+                  <input id="search" type="text" placeholder="Restaurants" value="" />
+                  <button class="btn-search" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                    </svg>
+                  </button>
                 </div>
-                <div class="row">
-                    <img src="assets/images/tour.jpg" class="img-fluid" alt="Responsive image">
-                </div>
+              </div>
+              <div class="suggestion-wrap">
+                <span>Barbershops</span>
+                <span>Events</span>
+                <span>Resturants</span>
+                <span>Shopping</span>
+                <span>Exploring</span>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <!--BOTTOM BAR-->
+      <div class="bar">
+        <div class="optionButtons">
+          <button type="button" class="btn btn-light btn-circle" id="oneB">
+            <svg aria-hidden="true" data-prefix="fas" data-icon="archway" class="svg-inline--fa fa-archway fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor" d="M560 448h-16V96H32v352H16.02c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16H176c8.84 0 16-7.16 16-16V320c0-53.02 42.98-96 96-96s96 42.98 96 96l.02 160v16c0 8.84 7.16 16 16 16H560c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zm0-448H16C7.16 0 0 7.16 0 16v32c0 8.84 7.16 16 16 16h544c8.84 0 16-7.16 16-16V16c0-8.84-7.16-16-16-16z"></path>
+            </svg>
+          </button>
+          <button type="button" class="btn btn-light btn-circle" id="twoB">
+            <svg aria-hidden="true" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
+            </svg>
+          </button>
+          <button type="button" class="btn btn-light btn-circle" id="threeB">
+            <svg aria-hidden="true" data-prefix="fas" data-icon="bed" class="svg-inline--fa fa-bed fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+              <path fill="currentColor" d="M176 256c44.11 0 80-35.89 80-80s-35.89-80-80-80-80 35.89-80 80 35.89 80 80 80zm352-128H304c-8.84 0-16 7.16-16 16v144H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h512v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V240c0-61.86-50.14-112-112-112z"></path>
+            </svg>
+          </button>
+          <button type="button" class="btn btn-light btn-circle" id="fourB"></button>
+        </div>
+        </div>
+
+    <br><br><br><br><br><br>
+
+    <!--2ND PAGE CONTAINER-->
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+                <h1 style="text-align: center;">In the mood for ...</h1>
+          </div>
+          <div class="col-3">
+          </div>
+          <div class="col-6">
+                <button type="button" class="btn btn-outline-light">Fun</button>
+                <button type="button" class="btn btn-outline-light">Munchies</button>
+                <button type="button" class="btn btn-outline-light">Classy</button>
+                <button type="button" class="btn btn-outline-light">Exotic</button>
+                <button type="button" class="btn btn-outline-light">Ratchet</button>
+                <button type="button" class="btn btn-outline-light">Anything</button>
+                <button type="button" class="btn btn-outline-light">Comedy</button>
+                <button type="button" class="btn btn-outline-light">Adventure</button>
             </div>
+            <div class="col-3">
+              
+            </div>
+        </div>
+        <div class="row" style="margin-top: 15px;">
+            <div class="col-4">
+            </div>
+            <div class="col-4">
+                <button type="button" class="btn btn-outline-light">Romantic</button>
+                <button type="button" class="btn btn-outline-light">Concert</button>
+                <button type="button" class="btn btn-outline-light">Explore</button>
+                <button type="button" class="btn btn-outline-light">Night on the Town</button>
+            </div>
+            <div class="col-4">
+              
+            </div>
+        </div>
+    </div>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <div class="row" id="pop">
+            <div class="col-4">
+              <img src="assets/images/STUDY.png" id="update-img" class="img-fluid" alt="Responsive image">
+              <h3 id="update-title">STUDY SPOT</h3>
+              <p id="update-date">JULY 24</p>
+              <p id="update-desc"  class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            </div>
+            <div class="col-4">
+              <img src="assets/images/CONCERT.png" id="update-img" class="img-fluid" alt="Responsive image">
+              <h3 id="update-title">CONCERT</h3>
+              <p id="update-date">AUG 15</p>
+              <p id="update-desc"  class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            </div>
+            <div class="col-4">
+              <img src="assets/images/BARBER.png" id="update-img" class="img-fluid" alt="Responsive image">
+              <h3 id="update-title">BABRERSHOP</h3>
+              <p id="update-date">SEP 24</p>
+              <p id="update-desc"  class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-4">
+              <img src="assets/images/RESTAURANT.png" id="update-img" class="img-fluid" alt="Responsive image">
+              <h3 id="update-title">RESTAURANT</h3>
+              <p id="update-date">OCT 11</p>
+              <p id="update-desc"  class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            </div>
+            <div class="col-4">
+              <img src="assets/images/HOTEL.png" id="update-img" class="img-fluid" alt="Responsive image">
+              <h3 id="update-title">HOTEL</h3>
+              <p id="update-date">OCT 30</p>
+              <p id="update-desc"  class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            </div>
+            <div class="col-4">
+              <img src="assets/images/HAIRSALON.jpg" id="update-img" class="img-fluid" alt="Responsive image">
+              <h3 id="update-title">HAIR SALON</h3>
+              <p id="update-date">NOV 26</p>
+              <p id="update-desc"  class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            </div>
+            <br><br>
+            <a href="#">See more</a>
+          </div>
+        </div>
+      </div>
 
-            <br><br><br><br><br><br>
 
-            <!--2ND PAGE CONTAINER-->
-            <div class="container-fluid">
-                <div class="row">
-                  <div class="col-12">
-                        <h1 style="text-align: center;">In the mood for ...</h1>
-                  </div>
-                  <div class="col-3">
-
-                  </div>
-                  <div class="col-6">
-                        <button type="button" class="btn btn-outline-light user-button" data-value="Fun">Fun</button>
-                        <button type="button" class="btn btn-outline-light user-button" data-value="Munchies">Munchies</button>
-                        <button type="button" class="btn btn-outline-light user-button" data-value="Classy">Classy</button>
-                        <button type="button" class="btn btn-outline-light user-button" data-value="Exotic">Exotic</button>
-                        <button type="button" class="btn btn-outline-light user-button" data-value="Ratchet">Ratchet</button>
-                        <button type="button" class="btn btn-outline-light user-button" data-value="Anything">Anything</button>
-                        <button type="button" class="btn btn-outline-light user-button" data-value="Comedy">Comedy</button>
-                        <button type="button" class="btn btn-outline-light user-button" data-value="Adventure">Adventure</button>
-                    </div>
-                    <div class="col-3">
-                      
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 15px;">
-                    <div class="col-4">
-
-                    </div>
-                    <div class="col-4">
-                        <button type="button" class="btn btn-outline-light user-button" data-value="Romantic">Romantic</button>
-                        <button type="button" class="btn btn-outline-light user-button" data-value="Concert">Concert</button>
-                        <button type="button" class="btn btn-outline-light user-button" data-value="Explore">Explore</button>
-                        <button type="button" class="btn btn-outline-light user-button" data-value="Night on the Town">Night on the Town</button>
-                    </div>
-                    <div class="col-4">
-                      
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <div class="row">
+              <div class="col-12">
+                <img src="" alt="">
               </div>
-
-              <div class="jumbotron jumbotron-fluid">
-                    <div class="container">
-                    <div class="row">
-                      <h2 class="display-4">We specialize in...</h2>
-                    </div>
-                    <div class="row">
-                      <div class="col-4">
-                            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-                      </div>
-                      <div class="col-4">
-                        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-                      </div>
-                      <div class="col-4">
-                            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-                      </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                            <div class="col-4">
-                                  <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-                            </div>
-                            <div class="col-4">
-                              <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-                            </div>
-                            <div class="col-4">
-                                  <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-                            </div>
-                          </div>
-                    </div>
+            </div>
+            <div class="row">
+              <div class="col-1">
+                <h1></h1>
+                <h2></h2>
               </div>
-
+              <div class="col-11">
+                <p></p>
+              </div>
+            </div>
+          </div>
+      </div>
 
 
     <!-- Optional JavaScript -->
