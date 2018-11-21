@@ -4,8 +4,6 @@ $(document).ready(function() {
     let userInputDiv = $("#search");
     let userInput = "";
     let userButtonInput = "";
-
-    var userButtonInput = null;
     var locations = [];
     let userCity = null;
     let eventLatSum = 0;
@@ -71,5 +69,5 @@ $(document).ready(function() {
         console.log("asdf");
     });
     
-    
-    });
+    console.log("hello");
+});
