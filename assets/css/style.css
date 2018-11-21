@@ -13,9 +13,12 @@ h1{
     text-shadow: #4E4B4B 0px 3px 6px;
 }
 h2{
-    color: #a239ca;
-    font-weight: bolder;
+    color: #09A8AE;
+    font-weight: bold;
     font-size: 60px;
+    letter-spacing: 50px;
+    text-align: center;
+    padding: 50px;
 }
 label{
     font-family: 'Arimo', sans-serif;
@@ -46,54 +49,38 @@ legend {
 }
 .jumbotron {
     z-index: 1;
-    position: absolute;
+    /* position: absolute; */
     margin-top: 10%;
     opacity: .80;
     width: 100%;
 }
-.s006{
-    margin-left: 30%;
+.s006 {
+    margin: 0 auto;
     z-index: 1;
-    position: absolute;
     margin-top: 5%;
 }
-.btn {
-  border-radius: 30px;
-}
-.jumbotron {
-  z-index: 1;
-  margin-top: 10%;
-  opacity: 0.8;
-  width: 100%;
-}
-.s006 {
-  margin-left: 30%;
-  z-index: 1;
-  margin-top: 5%;
-}
 .optionButtons {
   margin: 0 auto;
-  top: 375px;
-  margin-top: -25px;
+  text-align: center;
 }
 .bgHeader {
-  /* The image used */
-  background-image: url("../images/tour.png");
-
-  height: 550px;
-  margin: 0;
-  z-index: -1;
-  /* Center and scale the image nicely */
-
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: black;
-}
-
+    /* The image used */
+    background-image: url("../images/tour.png");
+   
+    height: 550px;
+    margin: 0;
+    z-index: -1;
+    /* Center and scale the image nicely */
+   
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-color: black;
+   }
 .bar {
-  z-index: 9999;
-}
-
+    z-index: 9999;
+    background-color: #222222;
+    height: 100px;
+   }
 .container {
   padding: 0;
 }
@@ -104,62 +91,26 @@ legend {
   padding: 6px 0;
   font-size: 12px;
   line-height: 1.42;
-  border-radius: 15px;
+  border-radius: 25px;
+}
+.svg-inline--fa {
+    height: 25px;
+    width: 25px;
+}
+.btn-outline-light{
+    margin: 2px;
 }
 .optionButtons {
-  margin-top: 20px;
-}
-.btn {
-    border-radius: 30px;
-}
-.jumbotron {
-  z-index: 1;
-  margin-top: 10%;
-  opacity: 0.8;
-  width: 100%;
-}
-.s006 {
-  margin-left: 30%;
-  z-index: 1;
-  margin-top: 5%;
-}
-.optionButtons {
-  margin: 0 auto;
-  top: 375px;
-  margin-top: -25px;
-}
-.bgHeader {
-  /* The image used */
-  background-image: url("../images/tour.png");
-
-  height: 550px;
-  margin: 0;
-  z-index: -1;
-  /* Center and scale the image nicely */
-
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: black;
-}
-
-.bar {
-  z-index: 9999;
-}
-
-.container {
-  padding: 0;
-}
-.btn-circle {
-  width: 60px;
-  height: 60px;
   text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.42;
-  border-radius: 15px;
 }
-.optionButtons {
-  margin-top: 20px;
+.moodButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form1 {
+    text-align: center;
+    margin-top: 50%;
 }
 /* ----------- IDS -----------*/
 #search{
@@ -198,4 +149,13 @@ legend {
     font-size: 24px;
     font-weight: bolder;
     margin-top: 15px;
+}
+#third{
+    background: #FFFFFF;
+}
+#filters{
+    
+}
+#results{
+    
 }
