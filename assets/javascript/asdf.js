@@ -23,21 +23,10 @@ $.ajax({
         console.log(response.city);
         userCity = response.city;
     })
-  
 
-parameterObj = {
-    location: userCity,
-}
-
-console.log(parameterObj.userCity);
-
-function moodsButtonClicked() {
-    //var userInput = $('#mood-input').val();
-    searchMood(userInput);
-}
-
-// function searchButton() {
-
+// function moodsButtonClicked() {
+//     var userInput = $('#mood-input').val();
+//     searchMood(userInput);
 // }
 
 $(document.body).on('click', '.btn' ,function(){

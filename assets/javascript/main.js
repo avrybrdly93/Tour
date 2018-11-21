@@ -4,6 +4,14 @@ $(document).ready(function() {
     let userInputDiv = $("#search");
     let userInput = "";
     let userButtonInput = "";
+
+    var userButtonInput = null;
+    var locations = [];
+    let userCity = null;
+    let eventLatSum = 0;
+    let eventLongSum = 0;
+    let googleKey = "AIzaSyAixJZDNOWf_nIxhnt6TRV3elr2ybHn_cc";
+
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyDqJ3VgayN_s8weHtA_Ezr8CdXx96aRw4w",
@@ -57,7 +65,11 @@ $(document).ready(function() {
         console.log(userInput);
     });
     
-    $(".user-button").on("click", searchButton);
+    $(".user-button").on("click", function() {
+        userButtonInput = $(this).attr("data-value");
+        console.log(userButtonInput);
+        console.log("asdf");
+    });
     
     
     });
