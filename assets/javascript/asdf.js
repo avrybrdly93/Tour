@@ -1,11 +1,14 @@
 // This should send out a call from the eventful api
-var moodsArray = ["Romantic", "Comedy", "Concert"];
+var moodsArray = [];
 var userButtonInput = null;
 var locations = [];
 let userCity = null;
+let eventLat = 0;
+let eventLong = 0;
 let eventLatSum = 0;
 let eventLongSum = 0;
 let googleKey = "AIzaSyAixJZDNOWf_nIxhnt6TRV3elr2ybHn_cc";
+let eventDivContainer = null;
 $(document).ready(function() {
     for (var i = 0; i < moodsArray.length; i++) {
         $("#mood-buttons").append("<button type='button' (\"" + moodsArray[i] + "\")' class='btn btn-primary' data-value='" + moodsArray[i] + "'>" 
@@ -24,21 +27,16 @@ $.ajax({
         userCity = response.city;
     })
 
-// function moodsButtonClicked() {
-//     var userInput = $('#mood-input').val();
-//     searchMood(userInput);
-// }
-
-$(document.body).on('click', '.btn' ,function(){
-    userButtonInput = $(this).attr("data-value");
-    console.log(userButtonInput);
-    searchMood();
+$("#input-submit").on("click", function(event) {
+    event.preventDefault();
+    userInput = $("#user-input").val();
+    DOMStuff();
+    searchMood(userInput);
 });
 
+function searchMood(searchParam) {
 
-function searchMood() {
-
-    let urlVariable = "http://api.eventful.com/json/events/search?location="+ userCity + "&keywords=" + userButtonInput + "&app_key=SGgPCPhjx34hgXV2";
+    let urlVariable = "http://api.eventful.com/json/events/search?location="+ userCity + "&keywords=" + searchParam + "&app_key=SGgPCPhjx34hgXV2";
 
     $.ajax({
             url: urlVariable,
@@ -54,19 +52,22 @@ function searchMood() {
             for(let i = 0; i < totalItems ; i++) {
                 eventTitle = resp.events.event[i].title;
                 eventDescription = resp.events.event[i].description;
+                console.log(resp.events.event[i].image);
 
-
+                
                 eventDiv = $("<div>");
-                eventDiv.appendTo("body");
+                eventDiv.appendTo(eventDivContainer);
                 eventImageDiv = $("<img>");
-                eventImageDiv.attr("src", resp.events.event[i].image.medium.url);
+                if(resp.events.event[i].image) {
+                    eventImageDiv.attr("src", resp.events.event[i].image.medium.url);
+                }
                 eventImageDiv.appendTo(eventDiv);
                 eventTitleDiv = $("<h3>");
                 eventTitleDiv.appendTo(eventDiv);
                 eventTitleDiv.text(eventTitle);
                 descriptionDiv = $("<p>");
                 descriptionDiv.appendTo(eventDiv);
-                descriptionDiv.text(resp.events.event[i].description);
+                descriptionDiv.html(resp.events.event[i].description);
                 eventDiv.append(resp.events.event[i].venue_address);
                 eventDiv.append($("<br>"));
                 eventDiv.append(resp.events.event[i].city_name);
@@ -83,6 +84,7 @@ function searchMood() {
                 console.log(eventTitle);
                 console.log(eventLat);
                 console.log(eventLong);
+                console.log(urlVariable);
                 console.log(" ");
                 locations.push([eventTitle, eventLat, eventLong, i]);  
             }
@@ -95,8 +97,8 @@ function searchMood() {
             eventLatAverage = eventLatSum / totalItems;
             eventLongAverage = eventLongSum / totalItems;
             console.log(eventLatAverage, eventLongAverage);
+
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 10,
                 center: new google.maps.LatLng(eventLatAverage, eventLongAverage),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
               });
@@ -104,12 +106,15 @@ function searchMood() {
               var infowindow = new google.maps.InfoWindow();
           
               var marker, i;
-          
+              var bounds = new google.maps.LatLngBounds();
+
               for (i = 0; i < locations.length; i++) {  
                 marker = new google.maps.Marker({
                   position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                   map: map
                 });
+
+                bounds.extend(marker.getPosition());
           
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                   return function() {
@@ -118,4 +123,13 @@ function searchMood() {
                   }
                 })(marker, i));
               }
-        })}
+              map.fitBounds(bounds);
+})
+}
+
+function DOMStuff() {
+    eventDivContainer = $("<div>");
+    eventDivContainer.attr("class", "container");
+    eventDivContainer.appendTo("body");
+    //eventDivContainer.empty();
+}
