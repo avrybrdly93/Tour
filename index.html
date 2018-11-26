@@ -6,18 +6,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
+  <!-- Bootstrap & HTML CSS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/style.css">
-  <script type="text/javascript" href="assets/javascript/main.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <script src="assets/javascript/main.js"></script>
+  <!--PLUGINS-->
+  <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
+  <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+  <!--slider plugin-->
+  <script type="text/javascript" href="assets/javascript/bootstrap-slider.js"></script>
+  <link type="stylesheet" href="assets/css/bootstrap-slider.css">
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   <title>Project</title>
+
 </head>
 
 <body>
   <!--NAVBAR-->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Tour</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -25,29 +36,25 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Annemities <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="#resultspage">Explore</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            Dropdown
+            More
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#moodpage">Mood</a>
+            <a class="dropdown-item" href="#pop">Current Events</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">The Team</a>
           </div>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-      </form>
     </div>
   </nav>
 
@@ -83,39 +90,39 @@
           </div>
         </div>
         <!--BOTTOM BAR-->
-        <div class="bar">
-          <div class="optionButtons">
+        <div class="optionButtons">
             <button type="button" class="btn btn-light btn-circle" id="oneB">
-              <svg aria-hidden="true" data-prefix="fas" data-icon="archway" class="svg-inline--fa fa-archway fa-w-18"
-                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                <path fill="currentColor" d="M560 448h-16V96H32v352H16.02c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16H176c8.84 0 16-7.16 16-16V320c0-53.02 42.98-96 96-96s96 42.98 96 96l.02 160v16c0 8.84 7.16 16 16 16H560c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zm0-448H16C7.16 0 0 7.16 0 16v32c0 8.84 7.16 16 16 16h544c8.84 0 16-7.16 16-16V16c0-8.84-7.16-16-16-16z"></path>
-              </svg>
+                <i class="fas fa-shopping-bag fa-3x"></i>
             </button>
+
             <button type="button" class="btn btn-light btn-circle" id="twoB">
-              <svg aria-hidden="true" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img"
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
-              </svg>
+                <i class="fas fa-basketball-ball fa-3x"></i>
             </button>
+
             <button type="button" class="btn btn-light btn-circle" id="threeB">
-              <svg aria-hidden="true" data-prefix="fas" data-icon="bed" class="svg-inline--fa fa-bed fa-w-20" role="img"
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                <path fill="currentColor" d="M176 256c44.11 0 80-35.89 80-80s-35.89-80-80-80-80 35.89-80 80 35.89 80 80 80zm352-128H304c-8.84 0-16 7.16-16 16v144H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h512v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V240c0-61.86-50.14-112-112-112z"></path>
-              </svg>
+                <i class="fas fa-concierge-bell fa-3x"></i>
             </button>
-            <button type="button" class="btn btn-light btn-circle" id="fourB"></button>
+
+            <button type="button" class="btn btn-light btn-circle" id="fourB">
+                <i class="fas fa-utensils fa-3x"></i>
+            </button>
+            <p id="suggestion1">SHOPPING</p>
+          <p id="suggestion2">EVENTS</p>
+          <p id="suggestion3">HOTELS</p>
+          <p id="suggestion4">DINNER</p>
           </div>
+        <div class="bar">
         </div>
       </div>
     </div>
 
-    <br><br><br><br><br><br>
+    <br><br><br>
     <div class="row">
       <!--2ND PAGE CONTAINER-->
-      <div class="container-fluid">
+      <div class="container-fluid" id="moodpage">
         <div class="row">
           <div class="col-12">
-            <h1 style="text-align: center;">In the mood for ...</h1>
+            <h1 id="mood">In the mood for ...</h1>
           </div>
 
           <div class="col-12 moodButtons">
@@ -139,7 +146,12 @@
           </div>
         </div>
       </div>
-      <div class="jumbotron jumbotron-fluid">
+    </div>
+
+    <br><br><br><br><br><br>
+      <!--CURRENT EVENTS PAGE-->
+    <div class="row">
+      <div class="container-fluid" id="eventspage">
         <div class="container">
           <div class="row" id="pop">
             <div class="col-4">
@@ -187,129 +199,263 @@
               <p id="update-desc" class="lead">This is a modified jumbotron that occupies the entire horizontal space
                 of its parent.</p>
             </div>
-            <br><br>
             <a href="#">See more</a>
+            <br><br><br><br><br>
           </div>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <!--THIRD PAGE CONTAINER-->
-      <div class="container-fluid" id="third">
+      <!--RESULTS PAGE CONTAINER-->
+      <div class="container-fluid" id="resultspage">
+        <div class="container">
         <h2>EXPLORE</h2>
 
         <div class="row">
           <!--FILTERS COLUMN-->
-          <div class="col-3 border" id="filters">
-
-            <p>FROM</p>
-            <input type="text" id="demo" class="demo" />
-            <div id="datetime-demo-holder" class="datetime-folder"></div>
-
-            <p>TILL</p>
-            <input type="text" id="demo" class="demo" />
-            <div id="datetime-demo-holder" class="datetime-folder"></div>
+          <div class="col-2 affix">
+            <h4 id="filters">FILTERS</h4>
 
             <div class="row">
-              <div class="col border" style="text-align: center">
-                <form>
-                  <div class="form-group">
-                    <label for="formControlRange">Your budget</label>
-                    <input type="range" class="form-control-range" id="formControlRange">
-                  </div>
-                </form>
-              </div>
-            </div>
+                
+              <div class="col">
 
-            <div class="row">
-              <div class="col border" style="text-align: center">
-                <form>
-                  <div class="form-group">
-                    <label for="formControlRange">Distance range</label>
-                    <input type="range" class="form-control-range" id="formControlRange">
-                  </div>
-                </form>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col border" style="text-align:center">
-                <p>FILTERS</p>
-                <div class="page-title">
-                  <label>
-                    <input type="checkbox" class="chkbox" value="1" />Restaurnts
-                  </label>
-                  <label>
-                    <input type="checkbox" class="chkbox" value="2" />Barbershops
-                  </label>
-                  <label>
-                    <input type="checkbox" class="chkbox" value="3" />Outdoor activities
-                  </label>
-                  <label>
-                    <input type="checkbox" class="chkbox" value="4" />Concerts
-                  </label>
-                  <label>
-                    <input type="checkbox" class="chkbox" value="5" />Sports events
-                  </label>
-                  <label>
-                    <input type="checkbox" class="chkbox" value="6" />Hotels
-                  </label>
-                  <label>
-                    <input type="checkbox" class="chkbox" value="7" />Tours
-                  </label>
-                  <label>
-                    <input type="checkbox" class="chkbox" value="8" />Gyms
-                  </label>
-                  <label>
-                    <input type="checkbox" class="chkbox" value="9" />Museums
-                  </label>
-                  <label>
-                    <input type="checkbox" class="chkbox" value="10" />Car rentals
-                  </label>
-                  <label>
-                    <input type="checkbox" class="chkbox" value="11" />Hair Salons
-                  </label>
+                    <div class="text">
+                    <label>
+                      <input type="checkbox" class="chkbox" value="1" />Restaurnts
+                    </label>
+                    <label>
+                      <input type="checkbox" class="chkbox" value="2" />Barbershops
+                    </label>
+                    <label>
+                      <input type="checkbox" class="chkbox" value="3" />Outdoor
+                    </label>
+                    <label>
+                      <input type="checkbox" class="chkbox" value="4" />Concerts
+                    </label>
+                    <label>
+                      <input type="checkbox" class="chkbox" value="5" />Sports
+                    </label>
+                    <label>
+                      <input type="checkbox" class="chkbox" value="6" />Hotels
+                    </label>
+                    <label>
+                      <input type="checkbox" class="chkbox" value="7" />Tours
+                    </label>
+                    <label>
+                      <input type="checkbox" class="chkbox" value="8" />Gyms
+                    </label>
+                    <label>
+                      <input type="checkbox" class="chkbox" value="9" />Museums
+                    </label>
+                    <label>
+                      <input type="checkbox" class="chkbox" value="10" />Car rentals
+                    </label>
+                    <label>
+                      <input type="checkbox" class="chkbox" value="11" />Hair Salons
+                    </label>
+                    </span>
                 </div>
               </div>
-            </div>
+          </div>
+
 
             <div class="row">
-              <div class="col-12 border" style="text-align: center">
+              <div class="col">
+                <input id="slider1" width="220"/>
+                Price: <span id="value1"></span>
+                <script>
+                    $('#slider1').slider({
+                        slide: function (e, value) {
+                            document.getElementById('value1').innerText = value;
+                        }
+                    });
+                </script> 
+
+                <br><br>
+
+                <input id="slider2" width="220" />
+                Distance(miles): <span id="value2"></span>
+                <script>
+                    $('#slider2').slider({
+                        slide: function (e, value) {
+                            document.getElementById('value2').innerText = value;
+                        }
+                    });
+                </script>
+              </div> 
+            </div>
+            
+            <br>
+
+            <div class="row">
+              <div class="col 4">
+                <label id="dates">Dates</label>
+                  <input id="datepicker"/>
+                  <script>
+                      $('#datepicker').datepicker({
+                          uiLibrary: 'bootstrap4'
+                      });
+                  </script>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12" style="text-align: center">
                 <button type="button" class="btn btn-secondary">Search</button>
               </div>
             </div>
           </div>
-          <!--RESULTS COLUMN-->
-          <div class="col-9 border" id="results">
-            Results
-          </div>
 
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="container">
-    <div class="row">
-      <div class="col-3">
-        <div class="row">
-          <div class="col-12">
-            <img src="" alt="">
-          </div>
-        </div>
-        <div class="row">
+          <!--EMPTY COLUMN-->
           <div class="col-1">
-            <h1></h1>
-            <h2></h2>
           </div>
-          <div class="col-11">
-            <p></p>
+
+          <!--RESULTS COLUMN-->
+          <div class="col-8" id="results">
+            
+            <div class="row">
+              <div class="col-12">
+                <img src="assets/images/HAIRSALON.jpg" id="results-img" class="img-fluid" alt="Responsive image">
+                <h3 id="results-title">HAIR SALON</h3>
+                <p id="results-address">123 Coding Drive</p>
+                <p id="results-desc" class="lead">SPECIALIZES IN GOURMET SUBS. YOU CAN BUILD YOUR OWN OR CHOOSE FROM A LIST OF
+                  FAVORITES INCLUDING: THE RUEBEN, THE ITALIAN, ULTIMATE BLT, MEATBALL LOVERS,
+                  SUPERFOOD WICH, COBB SALAD WRAP, AND THE WICKED.</p>
+                <p id="results-rating">RATING: </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <img src="assets/images/HAIRSALON.jpg" id="results-img" class="img-fluid" alt="Responsive image">
+                <h3 id="results-title">HAIR SALON</h3>
+                <p id="results-address">123 Coding Drive</p>
+                <p id="results-desc" class="lead">SPECIALIZES IN GOURMET SUBS. YOU CAN BUILD YOUR OWN OR CHOOSE FROM A LIST OF
+                  FAVORITES INCLUDING: THE RUEBEN, THE ITALIAN, ULTIMATE BLT, MEATBALL LOVERS,
+                  SUPERFOOD WICH, COBB SALAD WRAP, AND THE WICKED.</p>
+                <p id="results-rating">RATING: </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <img src="assets/images/HAIRSALON.jpg" id="results-img" class="img-fluid" alt="Responsive image">
+                <h3 id="results-title">HAIR SALON</h3>
+                <p id="results-address">123 Coding Drive</p>
+                <p id="results-desc" class="lead">SPECIALIZES IN GOURMET SUBS. YOU CAN BUILD YOUR OWN OR CHOOSE FROM A LIST OF
+                  FAVORITES INCLUDING: THE RUEBEN, THE ITALIAN, ULTIMATE BLT, MEATBALL LOVERS,
+                  SUPERFOOD WICH, COBB SALAD WRAP, AND THE WICKED.</p>
+                <p id="results-rating">RATING: </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-1">
+            <i class="fas fa-map-marked-alt fa-lg"></i>
+          </div>
+
+        <a href="#">See more</a>
+        <br><br><br><br>
+
           </div>
         </div>
       </div>
     </div>
+
+  <div class="row">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 id="team">The Team</h1>
+              <br>
+              <div class="row">
+                  <div class="col-6">
+                      <h5 class="team-title">TEAM & BACK-END LEAD</h5>
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="name">AVERY BRADLEY</p>
+                        </div>
+                        <div class="col-4">
+                          <a class="github-button" href="https://github.com/avrybrdly93" aria-label="Follow @avrybrdly93 on GitHub">Follow @avrybrdly93</a>
+                        </div>
+                    </div>
+
+                      <img src="assets/images/avery.png" style="width: 200px; height: 200px;" class="rounded float-left" alt="...">
+                      <p class="dev-about">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed scelerisque libero. Mauris viverra, dui gravida viverra efficitur, sapien magna gravida orci, quis congue leo leo id mi. Sed bibendum maximus porta. Sed eget nisi laoreet, fringilla nibh nec, varius sem. Morbi tincidunt bibendum condimentum. Aliquam nec massa maximus, lacinia lorem nec, dignissim diam. Morbi sagittis ut massa at mattis.</p>
+                  </div>
+
+                  <div class="col-6">
+                      <h5 class="team-title">FRONT-END LEAD</h5>
+                      <div class="row">
+                          <div class="col-4">
+                              <p class="name">CHARLES DUNCAN</p>
+                          </div>
+                          <div class="col-4">
+                            <a class="github-button" href="https://github.com/charlesthinks" aria-label="Follow @charlesthinks on GitHub">Follow @charlesthinks</a>
+                          </div>
+                      </div>
+  
+                        <img src="assets/images/charles.png" style="width: 200px; height: 200px;" class="rounded float-left" alt="...">
+                        <p class="dev-about">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed scelerisque libero. Mauris viverra, dui gravida viverra efficitur, sapien magna gravida orci, quis congue leo leo id mi. Sed bibendum maximus porta. Sed eget nisi laoreet, fringilla nibh nec, varius sem. Morbi tincidunt bibendum condimentum. Aliquam nec massa maximus, lacinia lorem nec, dignissim diam. Morbi sagittis ut massa at mattis.</p>
+                    </div>
+              </div>
+
+              <br>
+
+              <div class="row">
+                  <div class="col-4">
+                      <h5 class="team-title">BACK-END</h5>
+                      <div class="row">
+                          <div class="col-6">
+                              <p class="name">KASEY FILLPOT</p>
+                          </div>
+                          <div class="col-4">
+                            <a class="github-button" href="https://github.com/kfillpot" aria-label="Follow @kfillpot on GitHub">Follow @kfillpot</a>
+                          </div>
+                      </div>
+  
+                        <img src="assets/images/kasey.png" style="width: 200px; height: 200px;" class="rounded float-left" alt="...">
+                        <p class="dev-about">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed scelerisque libero. Mauris viverra, dui gravida viverra efficitur, sapien magna gravida orci, quis congue leo leo id mi. Sed bibendum maximus porta. Sed eget nisi laoreet, fringilla nibh nec, varius sem. Morbi tincidunt bibendum condimentum. Aliquam nec massa maximus, lacinia lorem nec, dignissim diam. Morbi sagittis ut massa at mattis.</p>
+                    </div>
+    
+                    <div class="col-4">
+                        <h5 class="team-title">FRONT-END</h5>
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="name">DOLORES HERNANDEZ</p>
+                            </div>
+                            <div class="col-4">
+                              <a class="github-button" href="https://github.com/emily151" aria-label="Follow @emily151 on GitHub">Follow @emily151</a>
+                            </div>
+                        </div>
+    
+                          <img src="assets/images/dolores.png" style="width: 200px; height: 200px;" class="rounded float-left" alt="...">
+                          <p class="dev-about">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed scelerisque libero. Mauris viverra, dui gravida viverra efficitur, sapien magna gravida orci, quis congue leo leo id mi. Sed bibendum maximus porta. Sed eget nisi laoreet, fringilla nibh nec, varius sem. Morbi tincidunt bibendum condimentum. Aliquam nec massa maximus, lacinia lorem nec, dignissim diam. Morbi sagittis ut massa at mattis.</p>
+                      </div>
+                  
+                      <div class="col-4">
+                          <h5 class="team-title">FULL-STACK</h5>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="name">LIDIA DAVIDSON</p>
+                              </div>
+                              <div class="col-4">
+                                <a class="github-button" href="https://github.com/LidiaWebDev" aria-label="Follow @LidiaWebDev on GitHub">Follow @LidiaWebDev</a>
+                              </div>
+                          </div>
+      
+                            <img src="assets/images/lidia.png" style="width: 200px; height: 200px;" class="rounded float-left" alt="...">
+                            <p class="dev-about">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed scelerisque libero. Mauris viverra, dui gravida viverra efficitur, sapien magna gravida orci, quis congue leo leo id mi. Sed bibendum maximus porta. Sed eget nisi laoreet, fringilla nibh nec, varius sem. Morbi tincidunt bibendum condimentum. Aliquam nec massa maximus, lacinia lorem nec, dignissim diam. Morbi sagittis ut massa at mattis.</p>
+                        </div>
+              </div>
+              
+            </div>
+        </div>
+  </div>
+</div>
 
 
     <!-- Optional JavaScript -->

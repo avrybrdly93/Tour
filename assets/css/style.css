@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Arimo|Merriweather');
+@import url('https://fonts.googleapis.com/css?family=Arimo|Lobster|Shadows+Into+Light|Noto+Sans+SC|Titillium+Web|Ubuntu');
 
 body {
     background-color: #BBBBBB;
@@ -8,22 +8,21 @@ img {
 }
 h1{
     color: #FFFFFF;
-    font-weight: bolder;
+    font-weight: bold;
     font-size: 60px;
-    text-shadow: #4E4B4B 0px 3px 6px;
+    text-shadow: rgb(95, 95, 95) 0px 0px 50px;
 }
 h2{
     color: #09A8AE;
-    font-weight: bold;
     font-size: 60px;
     letter-spacing: 50px;
     text-align: center;
     padding: 50px;
+    font-family: 'Shadows Into Light', cursive;
 }
 label{
     font-family: 'Arimo', sans-serif;
-    font-size: 26px;
-    font-weight: bold;
+    font-size: 16px;
 }
 a{
     color: #09A8AE;
@@ -50,7 +49,6 @@ legend {
 .jumbotron {
     z-index: 1;
     /* position: absolute; */
-    margin-top: 10%;
     opacity: .80;
     width: 100%;
 }
@@ -62,12 +60,14 @@ legend {
 .optionButtons {
   margin: 0 auto;
   text-align: center;
+  margin-top: -50px;
+  z-index: 9999;
 }
 .bgHeader {
     /* The image used */
     background-image: url("../images/tour.png");
    
-    height: 550px;
+    height:650px;
     margin: 0;
     z-index: -1;
     /* Center and scale the image nicely */
@@ -75,23 +75,23 @@ legend {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-color: black;
-   }
+}
 .bar {
-    z-index: 9999;
-    background-color: #222222;
-    height: 100px;
-   }
+    z-index: -999;
+    background-color: #4E4B4B;
+    height: 120px;
+    margin-top: -80px;
+}
 .container {
   padding: 0;
 }
 .btn-circle {
-  width: 60px;
-  height: 60px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.42;
-  border-radius: 25px;
+    width: 90px;
+    height: 90px;
+    padding: 6px 0;
+    font-size: 12px;
+    border-radius: 50px;
+    margin-right: 120px;
 }
 .svg-inline--fa {
     height: 25px;
@@ -112,6 +112,31 @@ legend {
     text-align: center;
     margin-top: 50%;
 }
+.text{
+    padding: 10px;
+    color: #BBBBBB;
+}
+.chkbox{
+    font-size: 24px;
+    margin: 5px;
+    font-family: 'Arimo', sans-serif;
+}
+.dev-about{
+    font-weight: lighter;
+    color: #FFFFFF;
+}
+.team-title{
+    color: #E8ADAD;
+    margin-bottom: 5px;
+}
+.name{
+    font-weight: bolder;
+    color: black;
+    margin-top: -5px;
+}
+.jumbotron-fluid{
+    background: #4E4B4B;
+}
 /* ----------- IDS -----------*/
 #search{
     width: 450px;
@@ -121,9 +146,48 @@ legend {
 #form{
     padding: 10px;
 }
+#suggestion1{
+    margin-right: 755px;
+    color: lightgrey;
+    font-size: 10px;
+    letter-spacing: 8px;
+    padding-top: 5px;
+}
+#suggestion2{
+    margin-right: 325px;
+    margin-top: -31px;
+    color: lightgrey;
+    font-size: 10px;
+    letter-spacing: 8px;
+}
+#suggestion3{
+    margin-left: 100px;
+    margin-top: -31px;
+    color: lightgrey;
+    font-size: 10px;
+    letter-spacing: 8px;
+}
+#suggestion4{
+    margin-left: 530px;
+    margin-top: -31px;
+    color: lightgrey;
+    font-size: 10px;
+    letter-spacing: 8px;
+}
+#mood{
+    font-family: 'Noto Sans SC', sans-serif;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 60px;
+    text-shadow: rgb(95, 95, 95) 0px 0px 50px;
+}
 #pop{
     z-index: 999;
-    margin-top: -125px;
+    margin-top: -80px;
+}
+#dates{
+    color: #09A8AE;
 }
 #update-img{
     width: 350px;
@@ -135,6 +199,7 @@ legend {
     width: 280px;
     margin-left: 80px;
     margin-top: -30px;
+    color: #FFFFFF;
 }
 #update-date{
     color: #E8ADAD;
@@ -149,13 +214,66 @@ legend {
     font-size: 24px;
     font-weight: bolder;
     margin-top: 15px;
+    margin-right: 10px;
+    color: #FFFFFF;
 }
-#third{
+#eventspage{
+    background: #4E4B4B;
+}
+#resultspage{
     background: #FFFFFF;
 }
 #filters{
-    
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    font-weight: thin;
+}
+#slider1{
+    padding: 10px;
 }
 #results{
-    
+    margin-top: 50px;
+}
+#results-img{
+    width: 200px;
+    height: 150px;
+    margin-left: 20px;
+    margin-bottom: 45px;
+}
+#results-title{
+    width: 500px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    font-weight: bolder;
+    letter-spacing: 25px;
+    margin-left: 240px;
+    margin-top: -200px;
+    color: #09A8AE;
+}
+#results-address{
+    margin-left: 240px;
+    margin-top: -10px;
+    color: lightslategray;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 14px;
+}
+#results-desc{
+    margin-left: 240px;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 14px;
+    font-weight: lighter;
+    width: 750px;
+}
+#results-rating{
+    margin-left: 240px;
+    margin-top: -10px;
+    margin-bottom: 40px;
+    font-weight: thin;
+}
+#team{
+    font-family: 'Shadows Into Light', cursive;
+    text-align: center;
 }
