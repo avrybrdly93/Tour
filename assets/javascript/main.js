@@ -2,10 +2,12 @@ $(document).ready(function() {
   // User input
   $("#main-search-btn").on("click", function() {
     event.preventDefault();
-    console.log("Button Clicked!");
+    //console.log("Button Clicked!");
     let userInput = $("#search")
       .val()
       .trim();
+    // Hide the first Div Container on Click
+    $("#firstPageContainer").hide();
   });
 
   $(".user-button").on("click", function() {
