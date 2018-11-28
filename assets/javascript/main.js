@@ -99,7 +99,7 @@ $(document).ready(function() {
     function DOMStuff() {
         eventDivContainer = $("<div>");
         eventDivContainer.attr("class", "container");
-        eventDivContainer.appendTo("body");
+        eventDivContainer.appendTo("#results");
         //eventDivContainer.empty();
     }
 
