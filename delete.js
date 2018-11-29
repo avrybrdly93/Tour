@@ -7,6 +7,8 @@ $(document).ready(function() {
     // Work on full-page map if possible
     // Include moment.js to convert event date info to a more user-friendly way and to be able to sort by date
 
+
+
     // variable definitions
     let userInputDiv = $("#search");
     let eventDivContainer = [];
@@ -16,19 +18,23 @@ $(document).ready(function() {
     let userCity = null;
     let eventLatSum = 0;
     let eventLongSum = 0;
+    let eventTitle = null;
+    let descriptionDiv = null;
+    let eventDiv = null;
+    let eventImageDiv = null;
     let googleKey = "AIzaSyAixJZDNOWf_nIxhnt6TRV3elr2ybHn_cc";
 
     // Initialize Firebase
-    // var config = {
-    //     apiKey: "AIzaSyDqJ3VgayN_s8weHtA_Ezr8CdXx96aRw4w",
-    //     authDomain: "tour-f4cd2.firebaseapp.com",
-    //     databaseURL: "https://tour-f4cd2.firebaseio.com",
-    //     projectId: "tour-f4cd2",
-    //     storageBucket: "",
-    //     messagingSenderId: "1019598312395"
-    // };
-    // firebase.initializeApp(config);
-    // let database = firebase.database();
+    var config = {
+        apiKey: "AIzaSyDqJ3VgayN_s8weHtA_Ezr8CdXx96aRw4w",
+        authDomain: "tour-f4cd2.firebaseapp.com",
+        databaseURL: "https://tour-f4cd2.firebaseio.com",
+        projectId: "tour-f4cd2",
+        storageBucket: "",
+        messagingSenderId: "1019598312395"
+    };
+    firebase.initializeApp(config);
+    let database = firebase.database();
 
     // Declaring fuctions
 
@@ -41,50 +47,57 @@ $(document).ready(function() {
             crossOrigin: null,
         })
             .done(function(response) {
+                // Add .split(" ").join("+"); after response city
                 userCity = response.city.split(" ").join("+");
             })
             .fail( function(xhr, textStatus, errorThrown) {
-                console.log(xhr.responseText);
+                alert(xhr.responseText);
             });
     }
     //DOM manipulation to list events that the user searches
     function DOMManipEventsPage(resp, i) {
+        //removeOldResults();
+
         eventTitle = resp.events.event[i].title;
         eventDescription = resp.events.event[i].description;
-        eventAddress =  resp.events.event[i].venue_address + ", " + resp.events.event[i].city_name + ", " + resp.events.event[i].region_abbr + " " + resp.events.event[i].postal_code;
-        eventTime = "― " + resp.events.event[i].start_time;
         console.log(resp.events.event[i].image);
 
-        eventDiv = $("<div>").attr("class", "results-info");
+        
+        eventDiv = $("<div>");
         eventDiv.appendTo(eventDivContainer);
-        eventImageDiv = $("<img>").attr({"id": "results-img", "class": "img-fluid", "alt": "Responsive image"});
+        eventImageDiv = $("<img>");
         if(resp.events.event[i].image) {
             eventImageDiv.attr("src", "http://" + resp.events.event[i].image.medium.url);
         }
         else {
-            // This else is what is added here.  If there is no photo, it will use the image in the determined location.  Just replace the name with the image you want to use.
-            eventImageDiv.attr("src", "assets/images/no_image_to_show.jpg")
+            eventImageDiv.attr("src", "assets/img/asdf.png")
         }
         eventImageDiv.appendTo(eventDiv);
-        eventTitleDiv = $("<h3>").attr("id", "results-title");
-        eventTitleDiv.appendTo(eventDiv).append($("<hr>"));
+        eventTitleDiv = $("<h3>");
+        eventTitleDiv.appendTo(eventDiv);
         eventTitleDiv.text(eventTitle);
-        eventDiv.append($("<hr>"));
-        eventLocationDiv = $("<p>").attr("id", "results-address");
-        eventLocationDiv.appendTo(eventDiv);
-        eventLocationDiv.text(eventAddress);
-        descriptionDiv = $("<p>").attr({"id": "results-desc", "class": "lead"});
+        descriptionDiv = $("<p>");
         descriptionDiv.appendTo(eventDiv);
         descriptionDiv.html(resp.events.event[i].description);
-        eventTimeDiv = $("<p>").attr("id", "results-time");
-        eventTimeDiv.appendTo(eventDiv);
-        eventTimeDiv.text(eventTime);
+        eventDiv.append(resp.events.event[i].venue_address);
+        eventDiv.append($("<br>"));
+        eventDiv.append(resp.events.event[i].city_name);
+        eventDiv.append(", " + resp.events.event[i].region_abbr);
+        eventDiv.append(" " + resp.events.event[i].postal_code);
+        eventDiv.append($("<br>"));
+        eventDiv.append(resp.events.event[i].start_time);
         eventDiv.append($("<br>"));
         eventDiv.append($("<br>"));
+
 
         console.log(eventTitle);
         //console.log(urlVariable);
         console.log(" ");
+    }
+    function removeOldResults() {
+        for(let j = 1; j < totalItems; j++) {
+            eventDivContainer.empty();
+        }
     }
 
     // getting latitude and longitude, finding their sum, and pushing information onto locations array for map use
@@ -100,20 +113,19 @@ $(document).ready(function() {
     }
 
     function DOMStuff() {
-        $("#results").empty();
         eventDivContainer = $("<div>");
         eventDivContainer.attr("class", "container");
-        eventDivContainer.appendTo("#results");
+        eventDivContainer.appendTo("body");
+        //eventDivContainer.empty();
     }
 
     // Creates map, this code was copied and pasted from the interwebz
     function createMap() {
         let mapDiv = $("<div>");
-        $(".modal-body").empty();
         mapDiv.attr("id", "map");
-        mapDiv.css("width", "465px");
+        mapDiv.css("width", "500px");
         mapDiv.css("height", "400px");
-        mapDiv.appendTo(".modal-body");
+        mapDiv.appendTo(eventDivContainer);
         var map = new google.maps.Map(document.getElementById('map'), {
             center: new google.maps.LatLng(eventLatAverage, eventLongAverage),
             mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -228,13 +240,12 @@ $(document).ready(function() {
     userLocation();
 
     // User input 
-    $("#main-search-btn").on("click", function(event) {
+    $("#search-button").on("click", function(event) {
         event.preventDefault();
         userInput = userInputDiv.val();
         console.log(userInput);
         DOMStuff();
         searchUserChoice(userInput, null);
-        location.replace("#resultspage");
         $("#search").val("");
     });
     // button user clicks
@@ -245,5 +256,4 @@ $(document).ready(function() {
         searchUserChoice(null, userButtonInput);
     });
     console.log(userCity);
-
 });
