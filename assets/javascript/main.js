@@ -7,8 +7,6 @@ $(document).ready(function() {
     // Work on full-page map if possible
     // Include moment.js to convert event date info to a more user-friendly way and to be able to sort by date
 
-
-
     // variable definitions
     let userInputDiv = $("#search");
     let eventDivContainer = [];
