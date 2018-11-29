@@ -197,7 +197,7 @@ $(document).ready(function() {
                     });
                     //append text to be displayed to notify user
                     let alertText = $("<p>");
-                    alertText.html("<strong>Holy guacamole!</strong> No search results 😫");
+                    alertText.html("<strong>Holy guacamole!</strong> No search results!😫");
                     alertText.appendTo(alertDiv);
                     //button
                     let alertBtn = $("<button>");
