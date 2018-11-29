@@ -31,7 +31,7 @@ $(document).ready(function() {
     // let database = firebase.database();
 
     // Declaring fuctions
-
+    
     // Find user location based on IP address
     function userLocation() {
         let geoLocation = "http://api.ipstack.com/check?access_key=de4f20df5ebec67a529407756403c69f&format=1";
@@ -41,7 +41,8 @@ $(document).ready(function() {
             crossOrigin: null,
         })
             .done(function(response) {
-                userCity = response.city;
+                // Add .split(" ").join("+"); after response city
+                userCity = response.city.split(" ").join("+");
             })
             .fail( function(xhr, textStatus, errorThrown) {
                 alert(xhr.responseText);
@@ -57,7 +58,13 @@ $(document).ready(function() {
 
         eventDiv = $("<div>").attr("class", "results-info");
         eventDiv.appendTo(eventDivContainer);
-        eventImageDiv = $("<img>").attr({"id": "results-img", "class": "img-fluid", "alt": "Responsive image"});
+        eventImageDiv = $("<img>").attr({"id": "results-img",
+        "class": "img-fluid",
+        "alt": "Responsive image",
+        "href": resp.events.event[i].url
+        }).appendTo($('<a>').attr({
+            href: resp.events.event[i].url
+          }));
         if(resp.events.event[i].image) {
             eventImageDiv.attr("src", "http://" + resp.events.event[i].image.medium.url);
         }
@@ -133,10 +140,11 @@ $(document).ready(function() {
             bounds.extend(marker.getPosition());
       
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                infowindow.setContent(locations[i][0]);
-                infowindow.open(map, marker);
-              }
+                return function() {
+                    infowindow.setContent('<h4>' + locations[i][0] + '</h4><br>' + eventAddress[i] +
+                    '<br>' + '<a target="_blank" href="https://www.google.com/maps/search/?api=1&query=' + eventAddress[i] + '">View on Google Maps</a>' );
+                  infowindow.open(map, marker);
+                }
             })(marker, i));
           }
           map.fitBounds(bounds);
@@ -181,6 +189,45 @@ $(document).ready(function() {
                 }
                 else {
                     console.log("No results found");
+                    //create div for alert class
+                    let alertDiv = $("<div>");
+                    alertDiv.attr({
+                        "class": "alert alert-light alert-dismissible fade show",
+                        "role": "alert"
+                    });
+                    //append text to be displayed to notify user
+                    let alertText = $("<p>");
+                    alertText.html("<strong>Holy guacamole!</strong> No search results 😫");
+                    alertText.appendTo(alertDiv);
+                    //button
+                    let alertBtn = $("<button>");
+                    alertBtn.attr({
+                        "type": "button",
+                        "class": "close",
+                        "data-dismiss": "alert",
+                        "aria-label": "close",
+                    });
+                    let alertSpan = $("<span>");
+                    alertSpan.attr({
+                        "aria-hidden": "true",
+                    });
+                    alertSpan.text('x');
+                    alertSpan.appendTo(alertBtn);
+                    alertBtn.appendTo(alertDiv);
+                    //button to retry search
+                    let retrySearchBtn = $("<button>");
+                    retrySearchBtn.attr({
+                        "type": "input",
+                        "id": "retryBtn",
+                        "class": "btn btn-dark",
+                        "onclick": "location.href='#'"
+                    })
+                    retrySearchBtn.text("Retry search!");
+                    let retrySearchBtnDiv = $("<div>");
+                    retrySearchBtn.appendTo(retrySearchBtnDiv);
+                    alertDiv.appendTo("#results");
+                    retrySearchBtnDiv.appendTo("#results");
+
                 }
             })
         }
@@ -227,14 +274,18 @@ $(document).ready(function() {
     }
     userLocation();
 
-    // User input 
-    $("#main-search-btn").on("click", function(event) {
+    $("#explore-btn").on("click", function(event){
+        event.preventDefault();
+        location.replace("#");
+    });
+    // User input for main search button
+    $(".main-search-btn").on("click", function(event) {
         event.preventDefault();
         userInput = userInputDiv.val();
         console.log(userInput);
+        location.replace("#resultspage");
         DOMStuff();
         searchUserChoice(userInput, null);
-        location.replace("#resultspage");
         $("#search").val("");
     });
     // button user clicks
@@ -243,6 +294,7 @@ $(document).ready(function() {
         console.log(userButtonInput);
         DOMStuff();
         searchUserChoice(null, userButtonInput);
+        location.replace("#resultspage");
     });
     console.log(userCity);
 
