@@ -36,6 +36,11 @@ legend {
     margin: 0 auto;
     text-align: center;
 }
+hr{
+    width: 400px;
+    margin-left: 240px;
+    margin-top: -5px;
+}
 /* ----------- CLASSES -----------*/
 .bgDiv {
     background-image: url("../images/tour.png");
@@ -147,14 +152,41 @@ legend {
     margin-top: -150px;
     margin-bottom: 100px;
 }
+.input-group {
+    border: 1px gray solid;
+    padding: 5px;
+    border-radius: 50px;
+    background-color: white;
+    border-width: 2px;
+    border-style: inset;
+    line-height: 50px;
+    vertical-align: middle;
+  }
+  .btn-search {
+    float: right;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    margin: 5px;
+  }
+  .btn-search:focus {
+    outline: none;
+  }
 /* ----------- IDS -----------*/
-#search{
+#search {
     width: 450px;
     height: 50px;
     border-radius: 50px;
+    border: none;
+    background-color: transparent;
+    outline: none;
 }
 #form{
     padding: 10px;
+}
+#search:select {
+    background-color: #e8adad;
 }
 #suggestion1{
     margin-right: 795px;
@@ -256,11 +288,11 @@ legend {
 #results-title{
     width: 500px;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 16px;
+    font-size: px;
     font-weight: bolder;
-    letter-spacing: 25px;
     margin-left: 240px;
     color: #09A8AE;
+    margin-top: -115px;
 }
 #results-address{
     margin-left: 240px;
@@ -274,7 +306,15 @@ legend {
     font-family: 'Titillium Web', sans-serif;
     font-size: 14px;
     font-weight: lighter;
-    width: 100%;
+    width: 905px;
+}
+#results-time{
+    margin-left: 240px;
+    margin-top: -10px;
+    color: lightslategray;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 12px;
+    letter-spacing: 5px;
 }
 #team{
     font-family: 'Shadows Into Light', cursive;

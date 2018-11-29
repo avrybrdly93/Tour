@@ -21,16 +21,16 @@ $(document).ready(function() {
     let googleKey = "AIzaSyAixJZDNOWf_nIxhnt6TRV3elr2ybHn_cc";
 
     // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyDqJ3VgayN_s8weHtA_Ezr8CdXx96aRw4w",
-        authDomain: "tour-f4cd2.firebaseapp.com",
-        databaseURL: "https://tour-f4cd2.firebaseio.com",
-        projectId: "tour-f4cd2",
-        storageBucket: "",
-        messagingSenderId: "1019598312395"
-    };
-    firebase.initializeApp(config);
-    let database = firebase.database();
+    // var config = {
+    //     apiKey: "AIzaSyDqJ3VgayN_s8weHtA_Ezr8CdXx96aRw4w",
+    //     authDomain: "tour-f4cd2.firebaseapp.com",
+    //     databaseURL: "https://tour-f4cd2.firebaseio.com",
+    //     projectId: "tour-f4cd2",
+    //     storageBucket: "",
+    //     messagingSenderId: "1019598312395"
+    // };
+    // firebase.initializeApp(config);
+    // let database = firebase.database();
 
     // Declaring fuctions
 
@@ -53,29 +53,34 @@ $(document).ready(function() {
     function DOMManipEventsPage(resp, i) {
         eventTitle = resp.events.event[i].title;
         eventDescription = resp.events.event[i].description;
+        eventAddress =  resp.events.event[i].venue_address + ", " + resp.events.event[i].city_name + ", " + resp.events.event[i].region_abbr + " " + resp.events.event[i].postal_code;
+        eventTime = "― " + resp.events.event[i].start_time;
         console.log(resp.events.event[i].image);
 
-        
-        eventDiv = $("<div>");
+        eventDiv = $("<div>").attr("class", "results-info");
         eventDiv.appendTo(eventDivContainer);
-        eventImageDiv = $("<img>");
+        eventImageDiv = $("<img>").attr({"id": "results-img", "class": "img-fluid", "alt": "Responsive image"});
         if(resp.events.event[i].image) {
             eventImageDiv.attr("src", "http://" + resp.events.event[i].image.medium.url);
         }
+        else {
+            // This else is what is added here.  If there is no photo, it will use the image in the determined location.  Just replace the name with the image you want to use.
+            eventImageDiv.attr("src", "assets/images/no_image_to_show.jpg")
+        }
         eventImageDiv.appendTo(eventDiv);
-        eventTitleDiv = $("<h3>");
-        eventTitleDiv.appendTo(eventDiv);
+        eventTitleDiv = $("<h3>").attr("id", "results-title");
+        eventTitleDiv.appendTo(eventDiv).append($("<hr>"));
         eventTitleDiv.text(eventTitle);
-        descriptionDiv = $("<p>");
+        eventDiv.append($("<hr>"));
+        eventLocationDiv = $("<p>").attr("id", "results-address");
+        eventLocationDiv.appendTo(eventDiv);
+        eventLocationDiv.text(eventAddress);
+        descriptionDiv = $("<p>").attr({"id": "results-desc", "class": "lead"});
         descriptionDiv.appendTo(eventDiv);
         descriptionDiv.html(resp.events.event[i].description);
-        eventDiv.append(resp.events.event[i].venue_address);
-        eventDiv.append($("<br>"));
-        eventDiv.append(resp.events.event[i].city_name);
-        eventDiv.append(", " + resp.events.event[i].region_abbr);
-        eventDiv.append(" " + resp.events.event[i].postal_code);
-        eventDiv.append($("<br>"));
-        eventDiv.append(resp.events.event[i].start_time);
+        eventTimeDiv = $("<p>").attr("id", "results-time");
+        eventTimeDiv.appendTo(eventDiv);
+        eventTimeDiv.text(eventTime);
         eventDiv.append($("<br>"));
         eventDiv.append($("<br>"));
 
@@ -97,19 +102,20 @@ $(document).ready(function() {
     }
 
     function DOMStuff() {
+        $("#results").empty();
         eventDivContainer = $("<div>");
         eventDivContainer.attr("class", "container");
         eventDivContainer.appendTo("#results");
-        //eventDivContainer.empty();
     }
 
     // Creates map, this code was copied and pasted from the interwebz
     function createMap() {
         let mapDiv = $("<div>");
+        $(".modal-body").empty();
         mapDiv.attr("id", "map");
-        mapDiv.css("width", "500px");
+        mapDiv.css("width", "465px");
         mapDiv.css("height", "400px");
-        mapDiv.appendTo(eventDivContainer);
+        mapDiv.appendTo(".modal-body");
         var map = new google.maps.Map(document.getElementById('map'), {
             center: new google.maps.LatLng(eventLatAverage, eventLongAverage),
             mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -164,15 +170,20 @@ $(document).ready(function() {
                 console.log(resp);
                 console.log(urlVariable);
                 totalItems = parseInt(resp.total_items);
-                if (totalItems > 10) {
-                    totalItems = 10;
+                if (totalItems != 0) {
+                    if (totalItems > 10) {
+                        totalItems = 10;
+                    }
+                    for(let i = 0; i < totalItems ; i++) {
+                        DOMManipEventsPage(resp, i);
+                        latLong(resp, i);       
+                    }
+                    latLongAvgCalc();
+                    createMap();
                 }
-                for(let i = 0; i < totalItems ; i++) {
-                    DOMManipEventsPage(resp, i);
-                    latLong(resp, i);          
+                else {
+                    console.log("No results found");
                 }
-                latLongAvgCalc();
-                createMap();
             })
         }
     // Push data to firebase database, expand on this later.
@@ -219,12 +230,13 @@ $(document).ready(function() {
     userLocation();
 
     // User input 
-    $("#search-button").on("click", function(event) {
+    $("#main-search-btn").on("click", function(event) {
         event.preventDefault();
         userInput = userInputDiv.val();
         console.log(userInput);
         DOMStuff();
         searchUserChoice(userInput, null);
+        location.replace("#resultspage");
         $("#search").val("");
     });
     // button user clicks
@@ -235,4 +247,5 @@ $(document).ready(function() {
         searchUserChoice(null, userButtonInput);
     });
     console.log(userCity);
+
 });
