@@ -58,6 +58,11 @@ $(document).ready(function() {
 
         eventDiv = $("<div>").attr("class", "results-info");
         eventDiv.appendTo(eventDivContainer);
+        scrollAni =  $("<div>").attr({
+            "data-aos":"fade-left",
+            "data-aos-easing":"linear",
+            "data-aos-duration": "600"
+        })    
         eventImageDiv = $("<img>").attr({"id": "results-img",
         "class": "img-fluid",
         "alt": "Responsive image",
@@ -72,20 +77,21 @@ $(document).ready(function() {
             // This else is what is added here.  If there is no photo, it will use the image in the determined location.  Just replace the name with the image you want to use.
             eventImageDiv.attr("src", "assets/images/no_image_to_show.jpg")
         }
-        eventImageDiv.appendTo(eventDiv);
+        eventImageDiv.appendTo(scrollAni);
         eventTitleDiv = $("<h3>").attr("id", "results-title");
-        eventTitleDiv.appendTo(eventDiv).append($("<hr>"));
+        eventTitleDiv.appendTo(scrollAni).append($("<hr>"));
         eventTitleDiv.text(eventTitle);
         eventDiv.append($("<hr>"));
         eventLocationDiv = $("<p>").attr("id", "results-address");
-        eventLocationDiv.appendTo(eventDiv);
+        eventLocationDiv.appendTo(scrollAni);
         eventLocationDiv.text(eventAddress);
         descriptionDiv = $("<p>").attr({"id": "results-desc", "class": "lead"});
-        descriptionDiv.appendTo(eventDiv);
+        descriptionDiv.appendTo(scrollAni);
         descriptionDiv.html(resp.events.event[i].description);
         eventTimeDiv = $("<p>").attr("id", "results-time");
-        eventTimeDiv.appendTo(eventDiv);
+        eventTimeDiv.appendTo(scrollAni);
         eventTimeDiv.text(eventTime);
+        scrollAni.appendTo(eventDiv);
         eventDiv.append($("<br>"));
         eventDiv.append($("<br>"));
 

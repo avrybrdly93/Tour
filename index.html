@@ -17,9 +17,9 @@
   <!--PLUGINS-->
   <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
   <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-  <!--slider plugin-->
-  <script type="text/javascript" href="assets/javascript/bootstrap-slider.js"></script>
-  <link type="stylesheet" href="assets/css/bootstrap-slider.css">
+  <!--NEW TECH + JS-->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <title>Tour</title>
 
@@ -27,6 +27,10 @@
 
   <!-- GITHUB BUTTONS -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!--New tech initialize-->
+  <script>
+    AOS.init();
+  </script>
 
 </head>
 
@@ -129,20 +133,26 @@
         <div class="container">
           <div class="row" id="pop">
             <div class="col-4" id="updateDiv1">
-              <img src="https://source.unsplash.com/featured/?sig=123&sport" id="update-img" class="img-fluid" alt="Responsive image">
-              <h3 id="update-title">SPORTS</h3>
+              <div data-aos="flip-left" data-aos-easing="linear" data-aos-duration="600">
+                <img src="https://source.unsplash.com/featured/?sig=123&sport" id="update-img" class="img-fluid" alt="Responsive image">
+                <h3 id="update-title">SPORTS</h3>
+              </div>
             </div>
             <p id="update-desc" class="lead">“When you’ve got something to prove, there’s nothing greater than a challenge.” <b>– Terry Bradshaw</b></p>
             <div class="col-4" id="updateDiv2">
-              <img src="https://source.unsplash.com/featured/?sig=123&concert" id="update-img" class="img-fluid" alt="Responsive image">
-              <h3 id="update-title">CONCERTS</h3>
+              <div data-aos="flip-up" data-aos-easing="linear" data-aos-duration="600">
+                <img src="https://source.unsplash.com/featured/?sig=123&concert" id="update-img" class="img-fluid" alt="Responsive image">
+                <h3 id="update-title">CONCERTS</h3>
+              </div>
             </div>
             <p id="update-desc" class="lead">“Complete strangers can stand silent next to each other in an elevator and not even look each other in the eye.
               But at a concert, those same strangers could find themselves dancing and singing together like best friends.
               That's the power of music.” <b>– LZ Granderson</b></p>
             <div class="col-4" id="updateDiv3">
-              <img src="https://source.unsplash.com/featured/?sig=123&festivals" id="update-img" class="img-fluid" alt="Responsive image">
-              <h3 id="update-title">FESTIVALS</h3>
+              <div data-aos="flip-right" data-aos-easing="linear" data-aos-duration="600">
+                <img src="https://source.unsplash.com/featured/?sig=123&festivals" id="update-img" class="img-fluid" alt="Responsive image">
+                <h3 id="update-title">FESTIVALS</h3>
+              </div>
             </div>
             <p id="update-desc" class="lead">“Festivals promote diversity, they bring neighbors into dialogue, they increase creativity,
               they offer opportunities for civic pride, they improve our general psychological well-being.
@@ -151,19 +161,25 @@
           <br>
           <div class="row">
             <div class="col-4" id="updateDiv4">
-              <img src="https://source.unsplash.com/featured/?sig=123&museum" id="update-img" class="img-fluid" alt="Responsive image">
-              <h3 id="update-title">MUESUMS</h3>
+              <div data-aos="flip-left" data-aos-easing="linear" data-aos-duration="600">
+                <img src="https://source.unsplash.com/featured/?sig=123&museum" id="update-img" class="img-fluid" alt="Responsive image">
+                <h3 id="update-title">MUESUMS</h3>
+              </div>
             </div>
             <p id="update-desc" class="lead">“A museum is a spiritual place. People lower their voices when they get close to art.”
               <b>– Mario Botta</b></p>
             <div class="col-4" id="updateDiv5">
-              <img src="https://source.unsplash.com/featured/?sig=123&familyfun" id="update-img" class="img-fluid" alt="Responsive image">
-              <h3 id="update-title">FAMILY FUN</h3>
+              <div data-aos="flip-down" data-aos-easing="linear" data-aos-duration="600">
+                <img src="https://source.unsplash.com/featured/?sig=123&familyfun" id="update-img" class="img-fluid" alt="Responsive image">
+                <h3 id="update-title">FAMILY FUN</h3>
+              </div>
             </div>
             <p id="update-desc" class="lead">“Family is not an important thing. It's everything.” <b>– Michael J. Fox</b></p>
             <div class="col-4" id="updateDiv6">
-              <img src="https://source.unsplash.com/featured/?sig=123&theater" id="update-img" class="img-fluid" alt="Responsive image">
-              <h3 id="update-title">THEATERS</h3>
+              <div data-aos="flip-right" data-aos-easing="linear" data-aos-duration="600">
+                <img src="https://source.unsplash.com/featured/?sig=123&theater" id="update-img" class="img-fluid" alt="Responsive image">
+                <h3 id="update-title">THEATERS</h3>
+              </div>
             </div>
             <p id="update-desc" class="lead">“The theatre was created to tell people the truth about life and the social situation.” <b>– Stella Adler</b></p>
           </div>
@@ -418,6 +434,22 @@
 
 
   <!-- Optional JavaScript -->
+  <script src="dist/aos.js"></script>
+    <script>
+      document.querySelector('html').classList.remove('no-js');
+      if (!window.Cypress) {
+        const scrollCounter = document.querySelector('.js-scroll-counter');
+        AOS.init({
+          mirror: true
+        });
+        document.addEventListener('aos:in', function(e) {
+          console.log('in!', e.detail);
+        });
+        window.addEventListener('scroll', function() {
+          scrollCounter.innerHTML = window.pageYOffset;
+        });
+      }
+    </script>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
