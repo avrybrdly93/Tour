@@ -1,12 +1,4 @@
 $(document).ready(function() {
-    // To Do
-    // Connect user search feedback with DOM, consult with Charles about this
-    // Look into hotels, restaurants, coffee shops, barber shops, etc. APIs
-    // Look into working with filters: specific dates, budget (might not be possible), distance from user (also might not be possible)
-    //      Specific categories: Restaurants, barber shops, coffee shops, outdoor activities, concerts, etc.
-    // Work on full-page map if possible
-    // Include moment.js to convert event date info to a more user-friendly way and to be able to sort by date
-
     // variable definitions
     let userInputDiv = $("#search");
     let eventDivContainer = [];
@@ -16,21 +8,8 @@ $(document).ready(function() {
     let userCity = null;
     let eventLatSum = 0;
     let eventLongSum = 0;
+    let eventAddress = [];
     let googleKey = "AIzaSyAixJZDNOWf_nIxhnt6TRV3elr2ybHn_cc";
-
-    // Initialize Firebase
-    // var config = {
-    //     apiKey: "AIzaSyDqJ3VgayN_s8weHtA_Ezr8CdXx96aRw4w",
-    //     authDomain: "tour-f4cd2.firebaseapp.com",
-    //     databaseURL: "https://tour-f4cd2.firebaseio.com",
-    //     projectId: "tour-f4cd2",
-    //     storageBucket: "",
-    //     messagingSenderId: "1019598312395"
-    // };
-    // firebase.initializeApp(config);
-    // let database = firebase.database();
-
-    // Declaring fuctions
     
     // Find user location based on IP address
     function userLocation() {
@@ -45,19 +24,24 @@ $(document).ready(function() {
                 userCity = response.city.split(" ").join("+");
             })
             .fail( function(xhr, textStatus, errorThrown) {
-                alert(xhr.responseText);
+                //console.log(xhr.responseText);
             });
     }
     //DOM manipulation to list events that the user searches
     function DOMManipEventsPage(resp, i) {
         eventTitle = resp.events.event[i].title;
         eventDescription = resp.events.event[i].description;
-        eventAddress =  resp.events.event[i].venue_address + ", " + resp.events.event[i].city_name + ", " + resp.events.event[i].region_abbr + " " + resp.events.event[i].postal_code;
+        eventAddress[i] =  resp.events.event[i].venue_address + ", " + resp.events.event[i].city_name + ", " + resp.events.event[i].region_abbr + " " + resp.events.event[i].postal_code;
         eventTime = "― " + resp.events.event[i].start_time;
         console.log(resp.events.event[i].image);
 
         eventDiv = $("<div>").attr("class", "results-info");
         eventDiv.appendTo(eventDivContainer);
+        scrollAni =  $("<div>").attr({
+            "data-aos":"fade-left",
+            "data-aos-easing":"linear",
+            "data-aos-duration": "600"
+        })    
         eventImageDiv = $("<img>").attr({"id": "results-img",
         "class": "img-fluid",
         "alt": "Responsive image",
@@ -72,26 +56,27 @@ $(document).ready(function() {
             // This else is what is added here.  If there is no photo, it will use the image in the determined location.  Just replace the name with the image you want to use.
             eventImageDiv.attr("src", "assets/images/no_image_to_show.jpg")
         }
-        eventImageDiv.appendTo(eventDiv);
+        eventImageDiv.appendTo(scrollAni);
         eventTitleDiv = $("<h3>").attr("id", "results-title");
-        eventTitleDiv.appendTo(eventDiv).append($("<hr>"));
+        eventTitleDiv.appendTo(scrollAni).append($("<hr>"));
         eventTitleDiv.text(eventTitle);
-        eventDiv.append($("<hr>"));
+        scrollAni.append($("<hr>"));
         eventLocationDiv = $("<p>").attr("id", "results-address");
-        eventLocationDiv.appendTo(eventDiv);
-        eventLocationDiv.text(eventAddress);
+        eventLocationDiv.appendTo(scrollAni);
+        eventLocationDiv.text(eventAddress[i]);
         descriptionDiv = $("<p>").attr({"id": "results-desc", "class": "lead"});
-        descriptionDiv.appendTo(eventDiv);
+        descriptionDiv.appendTo(scrollAni);
         descriptionDiv.html(resp.events.event[i].description);
         eventTimeDiv = $("<p>").attr("id", "results-time");
-        eventTimeDiv.appendTo(eventDiv);
+        eventTimeDiv.appendTo(scrollAni);
         eventTimeDiv.text(eventTime);
+        scrollAni.appendTo(eventDiv);
         eventDiv.append($("<br>"));
         eventDiv.append($("<br>"));
 
-        console.log(eventTitle);
+        //console.log(eventTitle);
         //console.log(urlVariable);
-        console.log(" ");
+        //console.log(" ");
     }
 
     // getting latitude and longitude, finding their sum, and pushing information onto locations array for map use
@@ -102,8 +87,8 @@ $(document).ready(function() {
         eventLongSum = eventLongSum + parseFloat(eventLong);
         locations.push([eventTitle, eventLat, eventLong, i]);
 
-        console.log(eventLat);
-        console.log(eventLong);
+        //console.log(eventLat);
+        //console.log(eventLong);
     }
 
     function DOMStuff() {
@@ -122,6 +107,7 @@ $(document).ready(function() {
         mapDiv.css("height", "400px");
         mapDiv.appendTo(".modal-body");
         var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 11,
             center: new google.maps.LatLng(eventLatAverage, eventLongAverage),
             mapTypeId: google.maps.MapTypeId.ROADMAP
           });
@@ -147,12 +133,80 @@ $(document).ready(function() {
                 }
             })(marker, i));
           }
-          map.fitBounds(bounds);
+          //console.log(locations);
+        //   map.fitBounds(bounds);
     }
     // Calculates average lat/long to center map
     function latLongAvgCalc() {
         eventLatAverage = eventLatSum / totalItems;
         eventLongAverage = eventLongSum / totalItems;
+    }
+    function ajaxCall(urlVariable) {
+        $.ajax({
+            url: urlVariable,
+            type: 'GET',
+            crossOrigin: null
+        })
+        .done(function(response) {
+            var resp = JSON.parse(response);
+            //console.log(resp);
+            console.log(urlVariable);
+            totalItems = parseInt(resp.total_items);
+            eventLatSum = 0;
+            eventLongSum  = 0;
+            if (totalItems != 0) {
+                if (totalItems > 10) {
+                    totalItems = 10;
+                }
+                for(let i = 0; i < totalItems ; i++) {
+                    DOMManipEventsPage(resp, i);
+                    latLong(resp, i);       
+                }
+                latLongAvgCalc();
+                createMap();
+            }
+            else {
+                //console.log("No results found");
+                //create div for alert class
+                let alertDiv = $("<div>");
+                alertDiv.attr({
+                    "class": "alert alert-light alert-dismissible fade show",
+                    "role": "alert"
+                });
+                //append text to be displayed to notify user
+                let alertText = $("<p>");
+                alertText.html("<strong>Holy guacamole!</strong> No search results!😫");
+                alertText.appendTo(alertDiv);
+                //button
+                let alertBtn = $("<button>");
+                alertBtn.attr({
+                    "type": "button",
+                    "class": "close",
+                    "data-dismiss": "alert",
+                    "aria-label": "close",
+                });
+                let alertSpan = $("<span>");
+                alertSpan.attr({
+                    "aria-hidden": "true",
+                });
+                alertSpan.text('x');
+                alertSpan.appendTo(alertBtn);
+                alertBtn.appendTo(alertDiv);
+                //button to retry search
+                let retrySearchBtn = $("<button>");
+                retrySearchBtn.attr({
+                    "type": "input",
+                    "id": "retryBtn",
+                    "class": "btn btn-dark",
+                    "onclick": "location.href='#'"
+                })
+                retrySearchBtn.text("Retry search!");
+                let retrySearchBtnDiv = $("<div>");
+                retrySearchBtn.appendTo(retrySearchBtnDiv);
+                alertDiv.appendTo("#results");
+                retrySearchBtnDiv.appendTo("#results");
+            }
+        })
     }
     // Main AJAX call for searching events based on users location
     function searchUserChoice(userKeyWordSelect, userCategorySelect) {
@@ -166,112 +220,9 @@ $(document).ready(function() {
         else if(userKeyWordSelect) {
             urlVariable = keyWordURL;
         }
-        $.ajax({
-                url: urlVariable,
-                type: 'GET',
-                crossOrigin: null
-            })
-            .done(function(response) {
-                var resp = JSON.parse(response);
-                console.log(resp);
-                console.log(urlVariable);
-                totalItems = parseInt(resp.total_items);
-                if (totalItems != 0) {
-                    if (totalItems > 10) {
-                        totalItems = 10;
-                    }
-                    for(let i = 0; i < totalItems ; i++) {
-                        DOMManipEventsPage(resp, i);
-                        latLong(resp, i);       
-                    }
-                    latLongAvgCalc();
-                    createMap();
-                }
-                else {
-                    console.log("No results found");
-                    //create div for alert class
-                    let alertDiv = $("<div>");
-                    alertDiv.attr({
-                        "class": "alert alert-light alert-dismissible fade show",
-                        "role": "alert"
-                    });
-                    //append text to be displayed to notify user
-                    let alertText = $("<p>");
-                    alertText.html("<strong>Holy guacamole!</strong> No search results!😫");
-                    alertText.appendTo(alertDiv);
-                    //button
-                    let alertBtn = $("<button>");
-                    alertBtn.attr({
-                        "type": "button",
-                        "class": "close",
-                        "data-dismiss": "alert",
-                        "aria-label": "close",
-                    });
-                    let alertSpan = $("<span>");
-                    alertSpan.attr({
-                        "aria-hidden": "true",
-                    });
-                    alertSpan.text('x');
-                    alertSpan.appendTo(alertBtn);
-                    alertBtn.appendTo(alertDiv);
-                    //button to retry search
-                    let retrySearchBtn = $("<button>");
-                    retrySearchBtn.attr({
-                        "type": "input",
-                        "id": "retryBtn",
-                        "class": "btn btn-dark",
-                        "onclick": "location.href='#'"
-                    })
-                    retrySearchBtn.text("Retry search!");
-                    let retrySearchBtnDiv = $("<div>");
-                    retrySearchBtn.appendTo(retrySearchBtnDiv);
-                    alertDiv.appendTo("#results");
-                    retrySearchBtnDiv.appendTo("#results");
+        ajaxCall(urlVariable);
+        }  
 
-                }
-            })
-        }
-    // Push data to firebase database, expand on this later.
-    function pushToFirebase() {
-        database.ref().set({
-            testData: "hello"
-        });
-    }
-    // Read data from firebase database, expand on this later.
-    function readFromFirebase() {
-        database.ref().on("child_added", function(snapshot) {
-            sv = snapshot.val();
-            console.log(sv);
-    }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-    });
-    }
-
-    // Search function that grabs user input.  Unused for now but expand on it more later.
-    function search(event) {
-        event.preventDefault();
-        userInput = userInputDiv.val();
-        console.log(userInput);
-    }
-
-    // Grabs info to search when user selects a button on page
-    function searchButton() {
-        userButtonInput = $(this).attr("data-value");
-        console.log(userButtonInput);
-    }
-
-    // Look into this for more generic AJAX calls.
-    function ajaxCall(APIURL, APIKey) {
-        let queryURL = APIURL + userInput + "&api_key=" + APIKey;
-        console.log(userInput);
-        console.log(queryURL);
-        $.ajax({
-            url:queryURL,
-            method: "GET"
-        }).then(function(response){
-            console.log(response.data);
-        })
-    }
     userLocation();
 
     $("#explore-btn").on("click", function(event){
@@ -282,7 +233,7 @@ $(document).ready(function() {
     $(".main-search-btn").on("click", function(event) {
         event.preventDefault();
         userInput = userInputDiv.val();
-        console.log(userInput);
+        //console.log(userInput);
         location.replace("#resultspage");
         DOMStuff();
         searchUserChoice(userInput, null);
@@ -291,11 +242,11 @@ $(document).ready(function() {
     // button user clicks
     $(".user-button").on("click", function() {
         userButtonInput = $(this).attr("data-value");
-        console.log(userButtonInput);
+        //console.log(userButtonInput);
         DOMStuff();
         searchUserChoice(null, userButtonInput);
         location.replace("#resultspage");
+        console.log(eventLatAverage);
+        console.log(totalItems);
     });
-    console.log(userCity);
-
 });
