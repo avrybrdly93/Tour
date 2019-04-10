@@ -21,11 +21,8 @@ $(document).ready(function() {
       .done(function(response) {
         // Add .split(" ").join("+"); after response city
         userCity = response.city.split(" ").join("+");
-        console.log(userCity);
       })
-      .fail(function(xhr, textStatus, errorThrown) {
-        //console.log(xhr.responseText);
-      });
+      .fail(function(xhr, textStatus, errorThrown) {});
   }
 
   //DOM manipulation to list events that the user searches
@@ -84,10 +81,6 @@ $(document).ready(function() {
     scrollAni.appendTo(eventDiv);
     eventDiv.append($("<br>"));
     eventDiv.append($("<br>"));
-
-    //console.log(eventTitle);
-    //console.log(urlVariable);
-    //console.log(" ");
   }
 
   // getting latitude and longitude, finding their sum, and pushing information onto locations array for map use
@@ -97,9 +90,6 @@ $(document).ready(function() {
     eventLatSum = eventLatSum + parseFloat(eventLat);
     eventLongSum = eventLongSum + parseFloat(eventLong);
     locations.push([eventTitle, eventLat, eventLong, i]);
-
-    console.log(eventLat);
-    console.log(eventLong);
   }
 
   function DOMStuff() {
@@ -156,19 +146,11 @@ $(document).ready(function() {
         })(marker, i)
       );
     }
-    //console.log(locations);
-    //   map.fitBounds(bounds);
   }
   // Calculates average lat/long to center map
   function latLongAvgCalc(totalItems) {
     eventLatAverage = eventLatSum / totalItems;
     eventLongAverage = eventLongSum / totalItems;
-    console.log(
-      "lat average: ",
-      eventLatAverage,
-      "long average:",
-      eventLongAverage
-    );
   }
   function ajaxCall(urlVariable) {
     $.ajax({
@@ -177,8 +159,6 @@ $(document).ready(function() {
       crossOrigin: null
     }).done(function(response) {
       var resp = JSON.parse(response);
-      //console.log(resp);
-      console.log(urlVariable);
       totalItems = parseInt(resp.total_items);
       eventLatSum = 0;
       eventLongSum = 0;
@@ -193,7 +173,6 @@ $(document).ready(function() {
         latLongAvgCalc();
         createMap();
       } else {
-        //console.log("No results found");
         //create div for alert class
         let alertDiv = $("<div>");
         alertDiv.attr({
@@ -254,7 +233,6 @@ $(document).ready(function() {
     };
 
     EVDB.API.call("/events/search", oArgs, function(oData) {
-      console.log(oData.total_items);
       let totalItems = oData.total_items;
       eventLatSum = 0;
       eventLongSum = 0;
@@ -269,7 +247,6 @@ $(document).ready(function() {
         latLongAvgCalc(totalItems);
         createMap();
       } else {
-        //console.log("No results found");
         //create div for alert class
         let alertDiv = $("<div>");
         alertDiv.attr({
@@ -322,7 +299,6 @@ $(document).ready(function() {
   $(".main-search-btn").on("click", function(event) {
     event.preventDefault();
     userInput = userInputDiv.val();
-    //console.log(userInput);
     location.replace("#resultspage");
     DOMStuff();
     searchUserChoice(userInput, null);
@@ -331,11 +307,8 @@ $(document).ready(function() {
   // button user clicks
   $(".user-button").on("click", function() {
     userButtonInput = $(this).attr("data-value");
-    //console.log(userButtonInput);
     DOMStuff();
     searchUserChoice(null, userButtonInput);
     location.replace("#resultspage");
-    console.log(eventLatAverage);
-    console.log(totalItems);
   });
 });
