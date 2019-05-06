@@ -10,6 +10,13 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
+    <!-- UIkit CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/css/uikit.min.css" />
+  
+  <!-- UIkit JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/js/uikit.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/js/uikit-icons.min.js"></script>
+  <!-- Custom CSS-->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
     crossorigin="anonymous">
@@ -32,10 +39,35 @@
   </script>
 
 </head>
+<div class="uk-position-relative">
+  <img src="assets/images/tour.png" height="100%" width="100%" alt="">
+  <div class="uk-position-top">
+      <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+          <div class="uk-navbar-left">
+              <ul class="uk-navbar-nav">
+                  <li><a href="#" style="color: white;">Home</a></li>
+                  <li><a href="#resultspage" style="color: white;">Explore</a></li>
+                  <li>
+                      <a href="#" style="color: white;">More</a>
+                      <div class="uk-navbar-dropdown">
+                          <ul class="uk-nav uk-navbar-dropdown-nav">
+                              <li><a href="#moodpage">Mood</a></li>
+                              <li><a href="#pop">Current Events</a></li>
+                              <li class="uk-nav-divider"></li>
+                              <li><a href="#theteam">The Team</a></li>
+                              <li><a href="#">GitHub</a></li>
+                          </ul>
+                      </div>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+  </div>
+</div>
 
 <body>
   <!--NAVBAR-->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Tour</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,14 +93,15 @@
         </li>
       </ul>
     </div>
-  </nav>
+  </nav> -->
 
   <!--DOCUMENT CONTAINER-->
   <div class="container-fluid">
 
+
     <!--1ST PAGE CONTAINER-->
     <div class="row">
-      <div class="container col-12">
+      <div class="col-12" id="searchform">
         <div class="row bgHeader">
           <div class="s006">
             <div data-id="2" class="aos-item" data-aos="fade-down" data-aos-duration="1600">
@@ -97,91 +130,105 @@
     <br><br><br>
     <!--MOOD PAGE CONTAINER-->
     <div class="row">
-      <div class="container-fluid" id="moodpage">
+      <div class="container">
+      <div class="col-12" id="moodpage">
         <div class="row">
           <div class="col-12">
             <h1 id="mood">In the mood for ...</h1>
             <p id="instructions">Click on one of the buttons below for a treat! 😉</p>
           </div>
+        </div>
 
-          <div class="col-12 moodButtons">
-              <button type="button" class="btn btn-outline-light user-button" data-value="attractions">Fun</button>
-              <button type="button" class="btn btn-outline-light user-button" data-value="food">Munchies</button>
-              <button type="button" class="btn btn-outline-light user-button" data-value="family_fun_kids">Family</button>
-              <button type="button" class="btn btn-outline-light user-button" data-value="music">Concerts</button>
-              <button type="button" class="btn btn-outline-light user-button" data-value="holiday">Holiday</button>
-              <button type="button" class="btn btn-outline-light user-button" data-value="other">Random</button>
-            </div>
-  
-          </div>
           <div class="row">
             <div class="col-12 moodButtons">
-              <button type="button" class="btn btn-outline-light user-button" data-value="business">Business</button>
-              <button type="button" class="btn btn-outline-light user-button" data-value="outdoors_recreation">Explore</button>
-              <button type="button" class="btn btn-outline-light user-button" data-value="art">Art</button>
+              <button type="button" class="btn btn-outline-light user-button btn-sm" data-value="attractions">Fun</button>
+              <button type="button" class="btn btn-outline-light user-button btn-sm" data-value="food">Munchies</button>
+              <button type="button" class="btn btn-outline-light user-button btn-sm" data-value="family_fun_kids">Family</button>
+              <button type="button" class="btn btn-outline-light user-button btn-sm" data-value="music">Concerts</button>
+              <button type="button" class="btn btn-outline-light user-button btn-sm" data-value="holiday">Holiday</button>
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-12 moodButtons">
+              <button type="button" class="btn btn-outline-light user-button btn-sm" data-value="business">Business</button>
+              <button type="button" class="btn btn-outline-light user-button btn-sm" data-value="outdoors_recreation">Explore</button>
+              <button type="button" class="btn btn-outline-light user-button btn-sm" data-value="art">Art</button>
+              <button type="button" class="btn btn-outline-light user-button btn-sm" data-value="other">Random</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  
 
     <br><br><br><br><br><br>
     <!--CURRENT EVENTS PAGE-->
     <div class="row">
-      <div class="container-fluid" id="eventspage">
-        <div class="container">
+      <div class="container" id="eventspage">
+        <div class="col-12">
           <div class="row" id="pop">
-            <div class="col-4 user-button" id="updateDiv1" data-value="sports">
+            <div class="col-xl-4 col-md-4 col-sm-12 user-button" id="updateDiv1" data-value="sports">
               <div data-aos="flip-left" data-aos-easing="linear" data-aos-duration="600">
                 <img src="https://source.unsplash.com/featured/?sig=123&sport" id="update-img" class="img-fluid" alt="Responsive image">
                 <h3 id="update-title">SPORTS</h3>
               </div>
             </div>
             <p id="update-desc" class="lead">“When you’ve got something to prove, there’s nothing greater than a challenge.” <b>– Terry Bradshaw</b></p>
-            <div class="col-4 user-button" data-value="concert" id="updateDiv2">
+        
+            <div class="col-xl-4 col-md-4 col-sm-12 user-button" data-value="concert" id="updateDiv2">
               <div data-aos="flip-up" data-aos-easing="linear" data-aos-duration="600">
                 <img src="https://source.unsplash.com/featured/?sig=123&concert" id="update-img" class="img-fluid" alt="Responsive image">
                 <h3 id="update-title">CONCERTS</h3>
               </div>
             </div>
             <p id="update-desc" class="lead">“Complete strangers can stand silent next to each other in an elevator and not even look each other in the eye.
-              But at a concert, those same strangers could find themselves dancing and singing together like best friends.
-              That's the power of music.” <b>– LZ Granderson</b></p>
-            <div class="col-4 user-button" data-value="festivals" id="updateDiv3">
+                But at a concert, those same strangers could find themselves dancing and singing together like best friends.
+                That's the power of music.” <b>– LZ Granderson</b></p>
+            
+            <div class="col-xl-4 col-md-4 col-sm-12 user-button" data-value="festivals" id="updateDiv3">
               <div data-aos="flip-right" data-aos-easing="linear" data-aos-duration="600">
                 <img src="https://source.unsplash.com/featured/?sig=123&festivals" id="update-img" class="img-fluid" alt="Responsive image">
                 <h3 id="update-title">FESTIVALS</h3>
               </div>
             </div>
             <p id="update-desc" class="lead">“Festivals promote diversity, they bring neighbors into dialogue, they increase creativity,
-              they offer opportunities for civic pride, they improve our general psychological well-being.
-              In short, they make cities better places to live.” <b>– David Binder</b></p>
+                they offer opportunities for civic pride, they improve our general psychological well-being.
+                In short, they make cities better places to live.” <b>– David Binder</b></p>
           </div>
+
           <br>
+
           <div class="row">
-            <div class="col-4 user-button" data-value="outdoor_recreation" id="updateDiv4">
+            <div class="col-xl-4 col-md-4 col-sm-12 user-button" data-value="outdoor_recreation" id="updateDiv4">
               <div data-aos="flip-left" data-aos-easing="linear" data-aos-duration="600">
                 <img src="https://source.unsplash.com/featured/?sig=123&outdoor" id="update-img" class="img-fluid" alt="Responsive image">
                 <h3 id="update-title">OUTDOORS</h3>
               </div>
             </div>
             <p id="update-desc" class="lead">“A museum is a spiritual place. People lower their voices when they get close to art.”
-              <b>– Mario Botta</b></p>
-            <div class="col-4 user-button" data-value="family_fun_kids" id="updateDiv5">
+                <b>– Mario Botta</b></p>
+            
+            <div class="col-xl-4 col-md-4 col-sm-12 user-button" data-value="family_fun_kids" id="updateDiv5">
               <div data-aos="flip-down" data-aos-easing="linear" data-aos-duration="600">
                 <img src="https://source.unsplash.com/featured/?sig=123&familyfun" id="update-img" class="img-fluid" alt="Responsive image">
                 <h3 id="update-title">FAMILY FUN</h3>
               </div>
             </div>
             <p id="update-desc" class="lead">“Family is not an important thing. It's everything.” <b>– Michael J. Fox</b></p>
-            <div class="col-4 user-button" data-value="theatre" id="updateDiv6">
+            
+            <div class="col-xl-4 col-md-4 col-sm-12 user-button" data-value="theatre" id="updateDiv6">
               <div data-aos="flip-right" data-aos-easing="linear" data-aos-duration="600">
                 <img src="https://source.unsplash.com/featured/?sig=123&theater" id="update-img" class="img-fluid" alt="Responsive image">
                 <h3 id="update-title">THEATERS</h3>
               </div>
             </div>
             <p id="update-desc" class="lead">“The theatre was created to tell people the truth about life and the social situation.” <b>– Stella Adler</b></p>
+            
           </div>
+
           <br><br><br>
+
         </div>
       </div>
     </div>
@@ -189,97 +236,21 @@
     <!--RESULTS PAGE CONTAINER-->
     <div class="row">
       <div class="container-fluid" id="resultspage">
-        <div class="container" id="exlpore">
-          <h2>EXPLORE</h2>
+        <div id="exlpore">
+          <h1 class="explore-text">EXPLORE</h1>
+          <i class="fas fa-map-marked-alt fa-lg map" data-toggle="modal" data-target="#exampleModalCenter"></i>
 
-          <div class="row">
+          <div class="row bgExplore">
             <!--FILTERS COLUMN-->
-            <!-- <div class="col-2 affix">
-              <h4 id="filters">FILTERS</h4>
-
-              <div class="row">
-
-                <div class="col">
-
-                  <div class="text">
-                    <label>
-                      <input type="checkbox" class="chkbox" value="festivals" />Festivals
-                    </label>
-                    <label>
-                      <input type="checkbox" class="chkbox" value="family" />Family
-                    </label>
-                    <label>
-                      <input type="checkbox" class="chkbox" value="outdoor" />Outdoor
-                    </label>
-                    <label>
-                      <input type="checkbox" class="chkbox" value="concerts" />Concerts
-                    </label>
-                    <label>
-                      <input type="checkbox" class="chkbox" value="sports" />Sports
-                    </label>
-                    <label>
-                      <input type="checkbox" class="chkbox" value="comedy" />Comedy
-                    </label>
-                    <label>
-                      <input type="checkbox" class="chkbox" value="nightlife" />Nightlife
-                    </label>
-                    <label>
-                      <input type="checkbox" class="chkbox" value="performing arts" />Performing Arts
-                    </label>
-                    <label>
-                      <input type="checkbox" class="chkbox" value="museums" />Museums
-                    </label>
-                    <label>
-                      <input type="checkbox" class="chkbox" value="networking" />Networking
-                    </label>
-                    <label>
-                      <input type="checkbox" class="chkbox" value="film" />Film
-                    </label>
-                    <label>
-                        <input type="checkbox" class="chkbox" value="food" />Food
-                    </label>
-                    <label>
-                        <input type="checkbox" class="chkbox" value="galleries" />Galleries
-                    </label>
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col 4">
-                  <label id="dates">Dates</label>
-                  <input id="datepicker" />
-                  <script>
-                    $('#datepicker').datepicker({
-                      uiLibrary: 'bootstrap4'
-                    });
-                  </script>
-                </div>
-              </div>
-
-              <br>
-
-              <div class="row">
-                <div class="col-12" style="text-align: center">
-                  <button type="button" class="btn btn-secondary">Search</button>
-                </div>
-              </div>
-            </div> -->
+            
 
             <!--RESULTS COLUMN-->
-            <div class="col-11" id="results">
-
-              <div class="row bgExplore">
-                <div class="col-12">
-                    <button type="button" id="explore-btn" class="btn btn-dark">Search!</button>
-                </div>
+            <div class="col-12" id="results">
+              <div class="row">
+                <button type="button" id="explore-btn" class="btn btn-dark">Search!</button>
               </div>
-
             </div>
 
-            <div class="col-1">
-              <i class="fas fa-map-marked-alt fa-lg" data-toggle="modal" data-target="#exampleModalCenter"></i>
               <!-- Modal -->
               <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -299,7 +270,6 @@
                     </div>
                   </div>
                 </div>
-            </div>
 
             <br><br><br>
 
@@ -318,13 +288,14 @@
             <div class="col-6">
               <h5 class="team-title">TEAM & BACK-END LEAD</h5>
               <div class="row">
-                <div class="col-4">
+                <div class="col-12">
                   <p class="name">AVERY BRADLEY</p>
                 </div>
-                <div class="col-4">
-                  <a class="github-button" href="https://github.com/avrybrdly93" aria-label="Follow @avrybrdly93 on GitHub">Follow
-                    @avrybrdly93</a>
-                </div>
+              </div>
+              <div class="row">
+                  <div class="col-12">
+                      <a class="github-button" href="https://github.com/avrybrdly93" aria-label="Follow @avrybrdly93 on GitHub">Follow</a>
+                    </div>
               </div>
 
               <img src="assets/images/avery.png" style="width: 200px; height: 200px;" class="rounded float-left" alt="...">
@@ -335,13 +306,14 @@
             <div class="col-6">
               <h5 class="team-title">FRONT-END LEAD</h5>
               <div class="row">
-                <div class="col-4">
+                <div class="col-12">
                   <p class="name">CHARLES DUNCAN</p>
                 </div>
-                <div class="col-4">
-                  <a class="github-button" href="https://github.com/charlesthinks" aria-label="Follow @charlesthinks on GitHub">Follow
-                    @charlesthinks</a>
-                </div>
+              </div>
+              <div class="row">
+                  <div class="col-12">
+                      <a class="github-button" href="https://github.com/charlesthinks" aria-label="Follow @charlesthinks on GitHub">Follow</a>
+                    </div>
               </div>
 
               <img src="assets/images/charles.png" style="width: 200px; height: 200px;" class="rounded float-left" alt="...">
@@ -356,13 +328,14 @@
             <div class="col-4">
               <h5 class="team-title">BACK-END</h5>
               <div class="row">
-                <div class="col-6">
+                <div class="col-12">
                   <p class="name">KASEY FILLPOT</p>
                 </div>
-                <div class="col-6">
-                  <a class="github-button" href="https://github.com/kfillpot" aria-label="Follow @kfillpot on GitHub">Follow
-                    @kfillpot</a>
-                </div>
+              </div>
+              <div class="row">
+                  <div class="col-12">
+                      <a class="github-button" href="https://github.com/kfillpot" aria-label="Follow @kfillpot on GitHub">Follow</a>
+                    </div>
               </div>
 
               <img src="assets/images/kasey.png" style="width: 200px; height: 200px;" class="rounded float-left" alt="...">
@@ -373,13 +346,15 @@
             <div class="col-4">
               <h5 class="team-title">FRONT-END</h5>
               <div class="row">
-                <div class="col-7">
+                <div class="col-12">
                   <p class="name">DOLORES HERNANDEZ</p>
                 </div>
-                <div class="col-5">
-                  <a class="github-button" href="https://github.com/emily151" aria-label="Follow @emily151 on GitHub">Follow
-                    @emily151</a>
-                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-12">
+                      <a class="github-button" href="https://github.com/emily151" aria-label="Follow @emily151 on GitHub">Follow</a>
+                    </div>
               </div>
 
               <img src="assets/images/dolores.png" style="width: 200px; height: 200px;" class="rounded float-left" alt="...">
@@ -390,13 +365,15 @@
             <div class="col-4">
               <h5 class="team-title">FULL-STACK</h5>
               <div class="row">
-                <div class="col-6">
+                <div class="col-12">
                   <p class="name">LIDIA DAVIDSON</p>
                 </div>
-                <div class="col-6">
-                  <a class="github-button" href="https://github.com/LidiaWebDev" aria-label="Follow @LidiaWebDev on GitHub">Follow
-                    @LidiaWebDev</a>
-                </div>
+              </div>
+              
+              <div class="row">
+                  <div class="col-12">
+                      <a class="github-button" href="https://github.com/LidiaWebDev" aria-label="Follow @LidiaWebDev on GitHub">Follow</a>
+                    </div>
               </div>
 
               <img src="assets/images/lidia.png" style="width: 200px; height: 200px;" class="rounded float-left" alt="...">
@@ -407,6 +384,7 @@
         </div>
       </div>
     </div>
+
     <ul class="nav justify-content-center">
       <li class="nav-item">
         <a class="nav-link" style="color:black;" href="#">Home</a>
@@ -416,6 +394,7 @@
       </li>
     </ul>
   </div>
+</div>
 
 
   <!-- Optional JavaScript -->
